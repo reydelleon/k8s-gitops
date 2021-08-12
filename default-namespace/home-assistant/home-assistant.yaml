@@ -23,6 +23,7 @@ spec:
     env:
       TZ: "America/New_York"
     hostNetwork: true
+    dnsPolicy: ClusterFirstWithHostNet
     ingress:
       main:
         enabled: true
