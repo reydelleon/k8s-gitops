@@ -5,12 +5,25 @@ metadata:
   name: home-assistant
   namespace: default
 spec:
+  interval: 5m0s
   chart:
     spec:
       chart: home-assistant
+      version: 9.3.1
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home
+        name: k8s-at-home-charts
+        namespace: flux-system
   install: {}
-  interval: 5m0s
+  values:
+    image: 
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: public
+        hosts:
+        - host: home-assistant.leonmachado.com
+          paths:
+          - path: /
+            pathType: ImplementationSpecific
 
