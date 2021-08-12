@@ -9,11 +9,12 @@ spec:
   chart:
     spec:
       chart: home-assistant
-      version: 9.3.1
+      version: '>=9.0.0 <10.0.0'
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
         namespace: flux-system
+      interval: 5m0s
   values:
     image:
       repository: homeassistant/home-assistant
@@ -37,6 +38,8 @@ spec:
     addons:
       codeserver:
         enabled: true
+        env:
+          TZ: "America/New_York"
         image:
           repository: codercom/code-server
           tag: 3.11.1
