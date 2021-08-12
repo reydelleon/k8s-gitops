@@ -16,7 +16,8 @@ spec:
         namespace: flux-system
   install: {}
   values:
-    image: 
+    env:
+      TZ: "America/New_York"
     ingress:
       main:
         enabled: true
