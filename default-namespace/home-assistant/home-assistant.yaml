@@ -34,8 +34,7 @@ spec:
         enabled: true
         storageClass: longhorn
         size: 5Gi
-      
-    add-ons:
+    addons:
       codeserver:
         enabled: true
         image:
