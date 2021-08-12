@@ -35,3 +35,26 @@ spec:
         storageClass: longhorn
         size: 5Gi
       
+    add-ons:
+      codeserver:
+        enabled: true
+        image:
+          repository: codercom/code-server
+          tag: 3.11.1
+        workingDir: /config
+        args:
+          - --user-data-dir
+          - "/config/.vscode"
+          - --auth
+          - "none"
+        ingress:
+          enabled: true
+          ingressClassName: public
+          hosts:
+          - host: home-assistant-config.leonmachado.com
+            paths:
+            - path: /
+              pathType: ImplementationSpecific
+          volumeMounts:
+          - name: config
+            mountPath: /config
