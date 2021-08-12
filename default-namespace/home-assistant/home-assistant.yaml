@@ -54,6 +54,6 @@ spec:
             paths:
             - path: /
               pathType: ImplementationSpecific
-          volumeMounts:
-          - name: config
-            mountPath: /config
+        volumeMounts:
+        - name: config
+          mountPath: /config
