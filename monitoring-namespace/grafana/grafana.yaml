@@ -12,7 +12,8 @@ spec:
       varsion: '<=6.15.0 <7.0.0'
       sourceRef:
         kind: HelmRepository
-        name: stable
+        name: grafana-charts
+        namespace: flux-system
       interval: 5m0s
   values:
     image:
@@ -33,5 +34,3 @@ spec:
       existingSecret: grafana-credentials
       userKey: admin-user
       passwordKey: admin-password
-
-
