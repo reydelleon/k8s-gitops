@@ -23,7 +23,7 @@ spec:
 
     ingress:
       ingressClassName: public
-      host: nzbget.leonmachado.com
+      host: radarr.leonmachado.com
       path: /
       pathType: ImplementationSpecific
 
