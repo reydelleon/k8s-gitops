@@ -21,6 +21,10 @@ spec:
       repository: blakeblackshear/frigate
       tag: 0.8.0-amd64
 
+    probes:
+      startup:
+        enabled: false
+
     ingress:
       main:
         enabled: true
