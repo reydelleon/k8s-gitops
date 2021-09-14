@@ -37,7 +37,7 @@ spec:
         storageClass: longhorn
         mountPath: /data
         accessMode: ReadWriteOnce
-        size: 10Mi
+        size: 100Mi
     
     config: |
       mqtt:
