@@ -34,8 +34,10 @@ spec:
     persistence:
       data:
         enabled: true
+        storageClass: longhorn
         mountPath: /data
         accessMode: ReadWriteOnce
+        size: 10Mi
     
     config: |
       mqtt:
