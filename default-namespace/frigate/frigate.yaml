@@ -47,3 +47,9 @@ spec:
       mqtt:
         host: mosquitto
         topic_prefix: security/detection
+      detectors:
+        cpu1:
+          type: cpu
+        cpu2:
+          type: cpu
+
