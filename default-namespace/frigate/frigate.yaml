@@ -35,6 +35,7 @@ spec:
       data:
         enabled: true
         mountPath: /data
+        accessMode: ReadWriteOnce
     
     config: |
       mqtt:
