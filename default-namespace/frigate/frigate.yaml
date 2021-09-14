@@ -31,17 +31,15 @@ spec:
           - path: /
             pathType: ImplementationSpecific
 
-    persistence:
-      data:
-        enabled: disabled
-        storageClass: longhorn
-        mountPath: /data
-        accessMode: ReadWriteOnce
-        size: 100Mi
+    # persistence:
+    #   data:
+    #     enabled: disabled
+    #     storageClass: longhorn
+    #     mountPath: /data
+    #     accessMode: ReadWriteOnce
+    #     size: 100Mi
     
     config: |
       mqtt:
         host: mqtt.leonmachado.com
         topic_prefix: security/detection
-      database:
-        path: /data/frigate.db
