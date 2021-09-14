@@ -33,7 +33,7 @@ spec:
 
     persistence:
       data:
-        enabled: true
+        enabled: disabled
         storageClass: longhorn
         mountPath: /data
         accessMode: ReadWriteOnce
@@ -45,4 +45,3 @@ spec:
         topic_prefix: security/detection
       database:
         path: /data/frigate.db
-      
