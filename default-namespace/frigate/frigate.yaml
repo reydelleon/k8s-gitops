@@ -41,5 +41,5 @@ spec:
     
     config: |
       mqtt:
-        host: mqtt.leonmachado.com
+        host: mosquitto
         topic_prefix: security/detection
