@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: teamcity
-      version: '0.6.0'
+      version: '0.8.0'
       sourceRef:
         kind: HelmRepository
         name: personal-charts
@@ -28,7 +28,7 @@ spec:
           paths:
             - path: /
               pathType: ImplementationSpecific
-    # persistence:
-    #   enabled: true
-    #   storageClassName: longhorn
-    #   size: 5Gi
+    persistence:
+      enabled: true
+      storageClassName: longhorn
+      size: 5Gi
