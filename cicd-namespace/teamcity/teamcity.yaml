@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: teamcity
-      version: '0.13.0'
+      version: '<=1.0.0 <2.0.0'
       sourceRef:
         kind: HelmRepository
         name: personal-charts
