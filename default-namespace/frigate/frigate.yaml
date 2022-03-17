@@ -23,13 +23,17 @@ spec:
 
     probes:
       startup:
-        enabled: true
-        custom: true
-        spec:
-          initialDelaySeconds: 10
-          periodSeconds: 5
-          timeoutSeconds: 1
-          failureThreshold: 30
+        enabled: false
+      #   custom: true
+      #   spec:
+      #     initialDelaySeconds: 10
+      #     periodSeconds: 5
+      #     timeoutSeconds: 1
+      #     failureThreshold: 30
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
 
     ingress:
       main:
