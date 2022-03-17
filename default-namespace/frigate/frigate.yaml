@@ -42,14 +42,32 @@ spec:
     #     mountPath: /data
     #     accessMode: ReadWriteOnce
     #     size: 100Mi
-    
-    config: |
-      mqtt:
-        host: mosquitto
-        topic_prefix: security/frigate
-      detectors:
-        cpu1:
-          type: cpu
-        cpu2:
-          type: cpu
+
+    configmap:
+      config:
+        # -- Store frigate configuration as a ConfigMap
+        enabled: true
+
+        # -- See [docs](https://blakeblackshear.github.io/frigate/) for more details.
+        # @default -- see URL to default config
+        data:
+          config.yml: |
+            mqtt:
+              host: mosquitto
+            detectors:
+              cpu1:
+                type: cpu
+              cpu2:
+                type: cpu
+            cameras:
+              backyard:
+                ffmpeg:
+                  inputs:
+                    - path: rtsps://192.168.1.7:7441/YtAp9IVeEihnpIKl?enableSrtp
+                      roles:
+                        - detect
+                detect:
+                  width: 640
+                  height: 360
+        
 
