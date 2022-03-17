@@ -23,7 +23,7 @@ spec:
 
     probes:
       startup:
-        enabled: false
+        enabled: true
 
     ingress:
       main:
