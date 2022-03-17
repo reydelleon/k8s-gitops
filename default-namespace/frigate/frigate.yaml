@@ -21,19 +21,9 @@ spec:
       repository: blakeblackshear/frigate
       tag: 0.10.1-amd64
 
-    probes:
-      startup:
-        enabled: false
-      #   custom: true
-      #   spec:
-      #     initialDelaySeconds: 10
-      #     periodSeconds: 5
-      #     timeoutSeconds: 1
-      #     failureThreshold: 30
-      liveness:
-        enabled: false
-      readiness:
-        enabled: false
+    # probes:
+    #   startup:
+    #     enabled: false
 
     ingress:
       main:
