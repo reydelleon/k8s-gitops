@@ -55,11 +55,24 @@ spec:
             mqtt:
               host: mosquitto
               topic_prefix: security/frigate
+
             detectors:
               cpu1:
                 type: cpu
               cpu2:
                 type: cpu
+
+            events:
+              pre_capture: 5
+              post_capture: 5
+              retain: 3
+
+            snapshots:
+              enabled: true
+              timestamp: true
+              retain:
+                default: 3
+
             cameras:
               back-yard:
                 rtmp:
@@ -72,9 +85,18 @@ spec:
                     - path: rtsps://192.168.1.7:7441/hmI1rZYM7OHjjnfL?enableSrtp
                       roles:
                         - record
+                objects:
+                  track:
+                    - person
                 detect:
+                  enabled: true
                   width: 640
                   height: 360
+                record:
+                  enabled: true
+                  retain:
+                    days: 3
+                    mode: active_objects
               
               baby-cam:
                 rtmp:
@@ -87,8 +109,16 @@ spec:
                     - path: rtsps://192.168.1.7:7441/FblhXcraGSXsOdUh?enableSrtp
                       roles:
                         - record
+                objects:
+                  track:
+                    - dog
                 detect:
+                  enabled: true
                   width: 640
                   height: 360
-        
+                record:
+                  enabled: true
+                  retain:
+                    days: 3
+                    mode: active_objects
 
