@@ -61,12 +61,28 @@ spec:
               cpu2:
                 type: cpu
             cameras:
-              backyard:
+              back-yard:
                 ffmpeg:
                   inputs:
                     - path: rtsps://192.168.1.7:7441/YtAp9IVeEihnpIKl?enableSrtp
                       roles:
                         - detect
+                    - path: rtsps://192.168.1.7:7441/hmI1rZYM7OHjjnfL?enableSrtp
+                      roles:
+                        - record
+                detect:
+                  width: 640
+                  height: 360
+              
+              baby-cam:
+                ffmpeg:
+                  inputs:
+                    - path: rtsps://192.168.1.7:7441/MtQxm9taFzfcNO9D?enableSrtp
+                      roles:
+                        - detect
+                    - path: rtsps://192.168.1.7:7441/FblhXcraGSXsOdUh?enableSrtp
+                      roles:
+                        - record
                 detect:
                   width: 640
                   height: 360
