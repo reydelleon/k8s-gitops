@@ -68,11 +68,7 @@ spec:
               retain:
                 default: 3
 
-            snapshots:
-              enabled: true
-              timestamp: true
-              retain:
-                default: 3
+
 
             cameras:
               back-yard:
@@ -86,18 +82,12 @@ spec:
                     - path: rtsps://192.168.1.7:7441/hmI1rZYM7OHjjnfL?enableSrtp
                       roles:
                         - record
-                objects:
-                  track:
-                    - person
+   
                 detect:
                   enabled: true
                   width: 640
                   height: 360
-                record:
-                  enabled: true
-                  retain:
-                    days: 3
-                    mode: active_objects
+           
               
               baby-cam:
                 rtmp:
@@ -110,16 +100,10 @@ spec:
                     - path: rtsps://192.168.1.7:7441/FblhXcraGSXsOdUh?enableSrtp
                       roles:
                         - record
-                objects:
-                  track:
-                    - dog
+           
                 detect:
                   enabled: true
                   width: 640
                   height: 360
-                record:
-                  enabled: true
-                  retain:
-                    days: 3
-                    mode: active_objects
+        
 
