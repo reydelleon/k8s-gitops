@@ -61,7 +61,7 @@ spec:
               cpu2:
                 type: cpu
             cameras:
-              back-yard:
+              back_yard:
                 ffmpeg:
                   inputs:
                     - path: rtsps://192.168.1.7:7441/YtAp9IVeEihnpIKl?enableSrtp
@@ -74,7 +74,7 @@ spec:
                   width: 640
                   height: 360
               
-              baby-cam:
+              baby_cam:
                 ffmpeg:
                   inputs:
                     - path: rtsps://192.168.1.7:7441/MtQxm9taFzfcNO9D?enableSrtp
