@@ -62,6 +62,10 @@ spec:
               cpu2:
                 type: cpu
 
+            record:
+              events:
+                retain:
+                  default: 3
 
             snapshots:
               enabled: true
