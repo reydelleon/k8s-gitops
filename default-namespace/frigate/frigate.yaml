@@ -65,7 +65,8 @@ spec:
             events:
               pre_capture: 5
               post_capture: 5
-              retain: 3
+              retain:
+                default: 3
 
             snapshots:
               enabled: true
