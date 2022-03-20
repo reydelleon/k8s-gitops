@@ -64,12 +64,13 @@ spec:
 
             record:
               events:
+                pre_capture: 5
+                post_capture: 5
                 retain:
-                  default: 3
+                  default: 5
 
             snapshots:
               enabled: true
-              timestamp: true
               retain:
                 default: 3
 
@@ -94,9 +95,9 @@ spec:
                   height: 360
                 record:
                   enabled: true
-                  retain:
-                    days: 3
-                    mode: active_objects
+                  events:
+                    retain:
+                      mode: active_objects
               
               baby-cam:
                 rtmp:
@@ -118,7 +119,7 @@ spec:
                   height: 360
                 record:
                   enabled: true
-                  retain:
-                    days: 3
-                    mode: active_objects
+                  events:
+                    retain:
+                      mode: active_objects
 
