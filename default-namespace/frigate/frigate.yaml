@@ -76,7 +76,7 @@ spec:
             snapshots:
               enabled: true
               retain:
-                default: 3
+                default: 30
 
             # Cameras section.
             cameras:
@@ -85,12 +85,18 @@ spec:
                   enabled: false
                 ffmpeg:
                   inputs:
+                    # Use the low resolution stream for motion/object detection
                     - path: rtsps://192.168.1.7:7441/YtAp9IVeEihnpIKl?enableSrtp
                       roles:
                         - detect
+                    # Use the high resolution stream for recordings
                     - path: rtsps://192.168.1.7:7441/hmI1rZYM7OHjjnfL?enableSrtp
                       roles:
                         - record
+                # Prevent any motion detection from being triggered in sky/high areas where people are unlikely to be
+                motion:
+                  mask: 
+                  - 639,196,481,179,265,161,1,152,1,1,640,0
                 objects:
                   track:
                     - person
@@ -109,16 +115,18 @@ spec:
                   enabled: false
                 ffmpeg:
                   inputs:
+                    # Use the low resolution stream for motion/object detection
                     - path: rtsps://192.168.1.7:7441/MtQxm9taFzfcNO9D?enableSrtp
                       roles:
                         - detect
+                    # Use the high resolution stream for recordings
                     - path: rtsps://192.168.1.7:7441/FblhXcraGSXsOdUh?enableSrtp
                       roles:
                         - record
-                objects:
-                  track:
-                    - dog
-                  mask: 1,359,2,0,640,0,639,359,592,243,587,126,363,136,53,80,39,200,71,284,132,359
+                # Prevent any motion detection from being triggered in ceiling and certain walls
+                motion:
+                  mask: 
+                  - 1,359,2,0,640,0,639,359,592,243,587,126,363,136,53,80,39,200,71,284,132,359
                 detect:
                   enabled: true
                   width: 640
@@ -126,14 +134,21 @@ spec:
                 record:
                   enabled: true
                   events:
+                    required_zones:
+                      - lazy-boy
+                      - couch
                     retain:
                       mode: active_objects
+                snapshots:
+                  required_zones:
+                    - lazy-boy
+                    - couch
                 zones:
                   lazy-boy:
                     coordinates: 131,251,73,255,67,200,91,200,99,232,124,234
                     objects:
                       - dog
                   couch:
-                    coordinates: 225,358,233,334,249,328,323,350,473,272,476,251,531,253,478,359
+                    coordinates: 328,358,466,286,529,283,492,359
                     objects:
                       - dog
