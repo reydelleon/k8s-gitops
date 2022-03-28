@@ -152,6 +152,6 @@ spec:
                     objects:
                       - dog
                   couch:
-                    coordinates: 328,358,466,286,529,283,492,359
+                    coordinates: 434,359,473,297,576,296,570,358
                     objects:
                       - dog
