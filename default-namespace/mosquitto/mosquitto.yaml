@@ -23,4 +23,11 @@ spec:
 
     service:
       main:
-        type: 
+        enabled: true
+        type: LoadBalancer
+        ports:
+          mqtt:
+            enabled: true
+            primary: true
+            port: 1883
+            protocol: TCP
