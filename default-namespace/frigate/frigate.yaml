@@ -100,6 +100,7 @@ spec:
                 objects:
                   track:
                     - person
+                    - dog
                 detect:
                   enabled: true
                   width: 640
@@ -107,6 +108,8 @@ spec:
                 record:
                   enabled: true
                   events:
+                    objects:
+                      - person
                     retain:
                       mode: active_objects
               
@@ -138,6 +141,8 @@ spec:
                 record:
                   enabled: true
                   events:
+                    objects:
+                      - dog
                     required_zones:
                       - lazy-boy
                       - couch
