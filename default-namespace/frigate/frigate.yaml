@@ -130,6 +130,7 @@ spec:
                 objects:
                   track:
                     - dog
+                    - person
                 detect:
                   enabled: true
                   width: 640
