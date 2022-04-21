@@ -138,9 +138,6 @@ spec:
                 record:
                   enabled: true
                   events:
-                    required_zones:
-                      - lazy-boy
-                      - couch
                     retain:
                       mode: active_objects
       
