@@ -138,6 +138,21 @@ spec:
                 record:
                   enabled: true
                   events:
+                    required_zones:
+                      - lazy-boy
+                      - couch
                     retain:
                       mode: active_objects
-      
+                snapshots:
+                  required_zones:
+                    - lazy-boy
+                    - couch
+                zones:
+                  lazy-boy:
+                    coordinates: 131,251,73,255,67,200,91,200,99,232,124,234
+                    objects:
+                      - dog
+                  couch:
+                    coordinates: 434,359,473,297,576,296,570,358
+                    objects:
+                      - dog
