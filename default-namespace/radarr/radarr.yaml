@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: linuxserver/radarr
-      tag: version-3.2.2.5080
+      tag: 4.1.0
 
     ingress:
       ingressClassName: public
