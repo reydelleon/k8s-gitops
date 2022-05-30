@@ -1,0 +1,36 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: elasticsearch
+  namespace: flux-system
+spec:
+  targetNamespace: monitoring
+  interval: 5m0s
+  chart:
+    spec:
+      chart: elastic/elasticsearch
+      version: '7.17.3'
+      sourceRef:
+        kind: HelmRepository
+        name: elastic-charts
+        namespace: flux-system
+      interval: 5m0s
+  values:
+    image: docker.elastic.co/elasticsearch/elasticsearch
+    imageTag: 7.17.3
+    
+    ingress:
+      enabled: true
+      className: public
+      path: /
+      pathType: ImplementationSpecific
+      hosts:
+        - host: elasticsearch.leonmachado.com
+          paths:
+            - path: /
+    persistence:
+      enabled: true
+      storageClassName: longhorn
+      size: 2Gi
+
