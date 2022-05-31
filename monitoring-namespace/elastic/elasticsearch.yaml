@@ -19,7 +19,7 @@ spec:
   values:
     image: docker.elastic.co/elasticsearch/elasticsearch
     imageTag: 7.17.3
-    
+    antiAffinity: soft
     ingress:
       enabled: true
       className: public
