@@ -17,28 +17,23 @@ spec:
         namespace: flux-system
       interval: 5m0s
   values:
-    image: docker.elastic.co/elasticsearch/elasticsearch
-    imageTag: 7.17.3
-    antiaffinity: soft
+    sysctlInitContainer:
+      enabled: false
+    esConfig:
+      elasticsearch.yml: |
+        node.store.allow_mmap: false
+    antiAffinity: "soft"
     esJavaOpts: "-Xmx128m -Xms128m"
-    ingress:
-      enabled: true
-      className: public
-      path: /
-      pathType: ImplementationSpecific
-      hosts:
-        - host: elasticsearch.leonmachado.com
-          paths:
-            - path: /
     resources:
       requests:
-        cpu: 100m
-        memory: 512M
+        cpu: "100m"
+        memory: "512M"
       limits:
-        cpu: 1000m
-        memory: 512M
+        cpu: "1000m"
+        memory: "512M"
     volumeClaimTemplate:
-      storageClassName: longhorn
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "longhorn"
       resources:
         requests:
           storage: 500M
