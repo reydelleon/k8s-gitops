@@ -19,7 +19,8 @@ spec:
   values:
     image: docker.elastic.co/elasticsearch/elasticsearch
     imageTag: 7.17.3
-    antiAffinityTopologyKey: ""
+    antiaffinity: soft
+    esJavaOpts: "-Xmx128m -Xms128m"
     ingress:
       enabled: true
       className: public
@@ -29,8 +30,16 @@ spec:
         - host: elasticsearch.leonmachado.com
           paths:
             - path: /
-    persistence:
-      enabled: true
+    resources:
+      requests:
+        cpu: 100m
+        memory: 512M
+      limits:
+        cpu: 1000m
+        memory: 512M
+    volumeClaimRTemplate:
       storageClassName: longhorn
-      size: 2Gi
+      resources:
+        requests:
+          storage: 500M
 
