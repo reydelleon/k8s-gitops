@@ -37,7 +37,7 @@ spec:
       limits:
         cpu: 1000m
         memory: 512M
-    volumeClaimRTemplate:
+    volumeClaimTemplate:
       storageClassName: longhorn
       resources:
         requests:
