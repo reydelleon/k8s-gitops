@@ -148,11 +148,11 @@ spec:
                     #   - couch
                     retain:
                       mode: active_objects
-                snapshots:
+                # snapshots:
                   # required_zones:
                   #   - lazy-boy
                   #   - couch
-                zones:
+                # zones:
                   # lazy-boy:
                   #   coordinates: 131,251,73,255,67,200,91,200,99,232,124,234
                   #   objects:
