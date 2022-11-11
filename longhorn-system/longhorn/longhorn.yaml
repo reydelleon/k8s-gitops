@@ -17,7 +17,7 @@ spec:
       interval: 5m0s
   values:
     ingress:
-      enable: true
+      enabled: true
       ingressClassName: public
       host: longhorn.leonmachado.com
       path: /
