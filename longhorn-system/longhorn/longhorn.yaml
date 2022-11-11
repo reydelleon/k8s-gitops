@@ -22,5 +22,5 @@ spec:
       host: longhorn.leonmachado.com
       path: /
       pathType: ImplementationSpecific
-  csi:
-    kubeletRootDir: /var/snap/microk8s/common/var/lib/kubelet # This is necessary to address an issue causing the CSI driver to fail
+    csi:
+      kubeletRootDir: /var/snap/microk8s/common/var/lib/kubelet # This is necessary to address an issue causing the CSI driver to fail
