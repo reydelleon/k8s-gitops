@@ -27,6 +27,6 @@ spec:
     defaultSettings:
       storageOverProvisioningPercentage: 200
       storageMinimalAvailablePercentage: 5
-      defaultReplicaCount: 3
+      defaultReplicaCount: 1
       defaultDataPath: /var/lib/longhorn/
       
