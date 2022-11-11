@@ -24,3 +24,9 @@ spec:
       pathType: ImplementationSpecific
     csi:
       kubeletRootDir: /var/snap/microk8s/common/var/lib/kubelet # This is necessary to address an issue causing the CSI driver to fail
+    defaultSettings:
+      storageOverProvisioningPercentage: 200
+      storageMinimalAvailablePercentage: 5
+      defaultReplicaCount: 3
+      defaultDataPath: /var/lib/longhorn/
+      
