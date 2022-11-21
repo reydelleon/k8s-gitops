@@ -29,7 +29,7 @@ spec:
         enabled: true
         ingressClassName: public
         annotations:
-          cert-manager.io/cluster-issuer: "letsencrypt-staging"
+          cert-manager.io/cluster-issuer: "letsencrypt-prod"
         hosts:
         - host: home-assistant.leonmachado.com
           paths:
@@ -62,7 +62,7 @@ spec:
           enabled: true
           ingressClassName: public
           annotations:
-            cert-manager.io/cluster-issuer: "letsencrypt-staging"
+            cert-manager.io/cluster-issuer: "letsencrypt-prod"
           hosts:
           - host: home-assistant-config.leonmachado.com
             paths:
