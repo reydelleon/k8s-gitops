@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: grafana
-  namespace: flux-system
+  namespace: monitoring
 spec:
   interval: 5m0s
   chart:
@@ -19,7 +19,6 @@ spec:
     image:
       repository: grafana/grafana
       tag: 9.2.6
-      namespaceOverride: monitoring
     ingress:
       enabled: true
       ingressClassName: public
