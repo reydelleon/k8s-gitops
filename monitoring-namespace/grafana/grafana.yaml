@@ -19,6 +19,7 @@ spec:
     image:
       repository: grafana/grafana
       tag: 9.2.6
+      namespaceOverride: monitoring
     ingress:
       enabled: true
       ingressClassName: public
