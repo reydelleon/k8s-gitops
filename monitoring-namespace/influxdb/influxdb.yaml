@@ -41,5 +41,5 @@ spec:
           secretName: influx-tls
     persistence:
       enabled: true
-      storageClassName: longhorn
+      storageClass: longhorn
       size: 2Gi
