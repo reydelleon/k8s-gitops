@@ -29,11 +29,17 @@ spec:
       main:
         enabled: true
         ingressClassName: public
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-prod"
         hosts:
         - host: frigate.leonmachado.com
           paths:
           - path: /
             pathType: ImplementationSpecific
+        tls:
+          - hosts:
+            - frigate.leonmachado.com
+            secretName: frigate-tls
 
     # persistence:
     #   data:
