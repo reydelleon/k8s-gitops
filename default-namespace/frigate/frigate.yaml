@@ -146,9 +146,9 @@ spec:
                   height: 360
                 record:
                   enabled: true
-                  events:
-                    objects:
-                      - dog
+                  # events:
+                  #   objects:
+                  #     - dog
                     # required_zones:
                     #   - lazy-boy
                     #   - couch
