@@ -145,10 +145,10 @@ spec:
                   width: 640
                   height: 360
                 record:
-                  enabled: true
-                  # events:
-                  #   objects:
-                  #     - dog
+                  enabled: false
+                  events:
+                    objects:
+                      - dog
                     # required_zones:
                     #   - lazy-boy
                     #   - couch
