@@ -40,11 +40,15 @@ spec:
           - hosts:
             - frigate.leonmachado.com
             secretName: frigate-tls
+
     persistence:
       data:
         enabled: true
         storageClass: longhorn
+        mountPath: /data
+        accessMode: ReadWriteOnce
         size: 5Gi
+
     configmap:
       config:
         # -- Store frigate configuration as a ConfigMap
