@@ -83,8 +83,18 @@ spec:
               enabled: true
               retain:
                 default: 30
+            
+            objects:
+              track:
+                - person
 
-            # Cameras section.
+            birdseye:
+              enabled: True
+              width: 1280
+              height: 720
+              quality: 8
+              mode: objects
+
             cameras:
               back-yard:
                 rtmp:
@@ -105,7 +115,6 @@ spec:
                   - 639,196,481,179,265,161,1,152,1,1,640,0
                 objects:
                   track:
-                    - person
                     - dog
                 detect:
                   enabled: true
@@ -118,7 +127,7 @@ spec:
                       - person
                     retain:
                       mode: active_objects
-              
+
               baby-cam:
                 rtmp:
                   enabled: false
@@ -132,14 +141,6 @@ spec:
                     - path: rtsps://192.168.1.7:7441/FblhXcraGSXsOdUh?enableSrtp
                       roles:
                         - record
-                # Prevent any motion detection from being triggered in ceiling and certain walls
-                # motion:
-                #   mask: 
-                #   - 1,359,2,0,640,0,639,359,592,243,587,126,363,136,53,80,39,200,71,284,132,359
-                objects:
-                  track:
-                    - dog
-                    - person
                 detect:
                   enabled: true
                   width: 640
@@ -149,21 +150,5 @@ spec:
                   events:
                     objects:
                       - dog
-                    # required_zones:
-                    #   - lazy-boy
-                    #   - couch
                     retain:
                       mode: active_objects
-                # snapshots:
-                  # required_zones:
-                  #   - lazy-boy
-                  #   - couch
-                # zones:
-                  # lazy-boy:
-                  #   coordinates: 131,251,73,255,67,200,91,200,99,232,124,234
-                  #   objects:
-                  #     - dog
-                  # couch:
-                  #   coordinates: 434,359,473,297,576,296,570,358
-                  #   objects:
-                  #     - dog
