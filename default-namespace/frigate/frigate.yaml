@@ -155,3 +155,8 @@ spec:
                       - person
                     retain:
                       mode: active_objects
+                zones:
+                  work-station:
+                    coordinates: 263,198,268,285,152,288,149,203
+                    objects:
+                      - person
