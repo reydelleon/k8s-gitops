@@ -148,6 +148,8 @@ spec:
                   stationary:
                     interval: 0
                     threshold: 50
+                snapshots:
+                  enabled: false
                 record:
                   enabled: false
                   events:
@@ -157,6 +159,6 @@ spec:
                       mode: active_objects
                 zones:
                   work-station:
-                    coordinates: 277,192,282,292,165,301,159,202
+                    coordinates: 277,192,282,292,145,297,159,202
                     objects:
                       - person
