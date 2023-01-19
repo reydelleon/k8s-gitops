@@ -159,6 +159,6 @@ spec:
                       mode: active_objects
                 zones:
                   work-station:
-                    coordinates: 277,192,282,292,145,297,159,202
+                    coordinates: 277,192,282,292,145,297,142,201
                     objects:
                       - person
