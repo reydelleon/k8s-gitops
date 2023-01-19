@@ -121,7 +121,7 @@ spec:
                   enabled: true
                   width: 640
                   height: 360
-                 record:
+                record:
                   enabled: true
                   events:
                     objects:
