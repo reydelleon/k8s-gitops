@@ -121,7 +121,7 @@ spec:
                   enabled: true
                   width: 640
                   height: 360
-                record:
+                 record:
                   enabled: true
                   events:
                     objects:
@@ -160,6 +160,6 @@ spec:
                       mode: active_objects
                 zones:
                   work-station:
-                    coordinates: 277,192,282,292,145,297,142,201
+                    coordinates: 274,223,282,292,145,297,148,220
                     objects:
                       - person
