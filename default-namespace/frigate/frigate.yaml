@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: blakeblackshear/frigate
-      tag: 0.10.1-amd64
+      tag: 0.11.1
 
     # probes:
     #   startup:
@@ -145,6 +145,9 @@ spec:
                   enabled: true
                   width: 640
                   height: 360
+                  stationary:
+                    interval: 0
+                    threshold: 50
                 record:
                   enabled: false
                   events:
