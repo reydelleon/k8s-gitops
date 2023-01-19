@@ -152,6 +152,6 @@ spec:
                   enabled: false
                   events:
                     objects:
-                      - dog
+                      - person
                     retain:
                       mode: active_objects
