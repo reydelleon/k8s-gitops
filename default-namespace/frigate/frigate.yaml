@@ -25,6 +25,9 @@ spec:
     #   startup:
     #     enabled: false
 
+    env:
+      PLUS_API_KEY: b131bef3-98b8-434c-85c1-4d6717954b93:c6d480e6e5aefd5920be825355a684dca66bcefd
+
     ingress:
       main:
         enabled: true
