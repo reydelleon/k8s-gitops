@@ -25,6 +25,9 @@ spec:
     #   startup:
     #     enabled: false
 
+    env:
+      PLUS_API_KEY: REDACTED
+
     ingress:
       main:
         enabled: true
