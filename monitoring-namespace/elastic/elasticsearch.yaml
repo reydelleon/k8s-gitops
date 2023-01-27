@@ -9,7 +9,7 @@ spec:
   interval: 5m0s
   chart:
     spec:
-      chart: elastic/elasticsearch
+      chart: elasticsearch
       version: 8.5.1
       sourceRef:
         kind: HelmRepository
