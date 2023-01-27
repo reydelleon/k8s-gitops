@@ -37,4 +37,14 @@ spec:
       resources:
         requests:
           storage: 500M
-
+    ingress:
+      enabled: true
+      className: public
+      hosts:
+        - host: elastic.leonmachado.com
+          paths:
+            - path: /
+      tls:
+        - secretName: elasticsearch-tls
+          hosts:
+            - elastic.leonmachado.com
