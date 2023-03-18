@@ -17,6 +17,6 @@ spec:
       interval: 5m0s
   values:
     installCRDs: true
-    extraArgs:
-      - --dns01-recursive-nameservers-only
-      - --dns01-recursive-nameservers=10.152.183.10:53
+    # extraArgs:
+    #   - --dns01-recursive-nameservers-only
+    #   - --dns01-recursive-nameservers=10.152.183.10:53
