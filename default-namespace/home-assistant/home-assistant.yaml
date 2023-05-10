@@ -29,16 +29,16 @@ spec:
         enabled: true
         ingressClassName: public
         annotations:
-          cert-manager.io/cluster-issuer: "letsencrypt-prod"
+          # cert-manager.io/cluster-issuer: "letsencrypt-prod"
         hosts:
         - host: home-assistant.leonmachado.com
           paths:
           - path: /
             pathType: ImplementationSpecific
-        tls:
-          - hosts:
-            - home-assistant.leonmachado.com
-            secretName: home-assistant-tls
+        # tls:
+        #   - hosts:
+        #     - home-assistant.leonmachado.com
+        #     secretName: home-assistant-tls
     persistence:
       config:
         enabled: true
