@@ -19,4 +19,4 @@ spec:
     installCRDs: true
     extraArgs:
       - --dns01-recursive-nameservers-only
-      - --dns01-recursive-nameservers=1.1.1.1:53,8.8.8.8:53
+      - --dns01-recursive-nameservers=192.168.1.9:53,10.152.183.10:53
