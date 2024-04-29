@@ -28,17 +28,11 @@ spec:
       main:
         enabled: true
         ingressClassName: nginx
-        annotations:
-          cert-manager.io/cluster-issuer: "letsencrypt-prod"
         hosts:
         - host: home-assistant.leonmachado.com
           paths:
           - path: /
             pathType: ImplementationSpecific
-        tls:
-          - hosts:
-            - home-assistant.leonmachado.com
-            secretName: home-assistant-tls
     persistence:
       config:
         enabled: true
@@ -61,17 +55,11 @@ spec:
         ingress:
           enabled: true
           ingressClassName: nginx
-          annotations:
-            cert-manager.io/cluster-issuer: "letsencrypt-prod"
           hosts:
           - host: home-assistant-config.leonmachado.com
             paths:
             - path: /
               pathType: ImplementationSpecific
-          tls:
-            - hosts:
-              - home-assistant-config.leonmachado.com
-              secretName: home-assistant-config-tls
         volumeMounts:
         - name: config
           mountPath: /config
