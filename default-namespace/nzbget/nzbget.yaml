@@ -21,7 +21,7 @@ spec:
       tag: version-v21.1
 
     ingress:
-      ingressClassName: public
+      ingressClassName: nginx
       host: nzbget.leonmachado.com
       path: /
       pathType: ImplementationSpecific
