@@ -22,7 +22,7 @@ spec:
       tag: 4.2.4
 
     ingress:
-      ingressClassName: public
+      ingressClassName: nginx
       host: radarr.leonmachado.com
       path: /
       pathType: ImplementationSpecific
