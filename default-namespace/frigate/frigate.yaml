@@ -99,11 +99,11 @@ spec:
                 ffmpeg:
                   inputs:
                     # Use the low resolution stream for motion/object detection
-                    - path: rtsps://192.168.1.7:7441/YtAp9IVeEihnpIKl?enableSrtp
+                    - path: rtsps://192.168.1.2:7441/REDACTED_STREAM_TOKEN?enableSrtp
                       roles:
                         - detect
                     # Use the high resolution stream for recordings
-                    - path: rtsps://192.168.1.7:7441/hmI1rZYM7OHjjnfL?enableSrtp
+                    - path: rtsps://192.168.1.2:7441/REDACTED_STREAM_TOKEN?enableSrtp
                       roles:
                         - record
                 # Prevent any motion detection from being triggered in sky/high areas where people are unlikely to be
@@ -132,11 +132,11 @@ spec:
                 ffmpeg:
                   inputs:
                     # Use the low resolution stream for motion/object detection
-                    - path: rtsps://192.168.1.7:7441/MtQxm9taFzfcNO9D?enableSrtp
+                    - path: rtsps://192.168.1.2:7441/REDACTED_STREAM_TOKEN?enableSrtp
                       roles:
                         - detect
                     # Use the high resolution stream for recordings
-                    - path: rtsps://192.168.1.7:7441/FblhXcraGSXsOdUh?enableSrtp
+                    - path: rtsps://192.168.1.2:7441/REDACTED_STREAM_TOKEN?enableSrtp
                       roles:
                         - record
                 detect:
@@ -144,7 +144,7 @@ spec:
                   width: 640
                   height: 360
                   stationary:
-                    interval: 0
+                    interval: 50
                     threshold: 50
                 snapshots:
                   enabled: false
