@@ -18,8 +18,8 @@ spec:
       interval: 5m0s
   values:
     image:
-      repository: blakeblackshear/frigate
-      tag: 0.13.2
+      repository: ghcr.io/blakeblackshear/frigate
+      tag: stable
 
     # probes:
     #   startup:
