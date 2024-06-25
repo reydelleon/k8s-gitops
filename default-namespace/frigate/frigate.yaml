@@ -89,9 +89,9 @@ spec:
               min_volume: 200
               filters:
                 rain:
-                  threshold: 0.4
+                  threshold: 0.5
                 bark:
-                  threshold: 0.4
+                  threshold: 0.5
                 lawn_mower:
                   threshold: 0.5
                 siren:
