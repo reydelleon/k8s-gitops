@@ -113,23 +113,31 @@ spec:
             go2rtc:
               streams:
                 back-yard:
-                  - rtspx://192.168.1.2:7441/REDACTED_STREAM_TOKEN
+                  - rtspx://192.168.1.2:7441/REDACTED_STREAM_TOKEN # High resolution stream
+                back-yard-low:
+                  - rtspx://192.168.1.2:7441/REDACTED_STREAM_TOKEN # Low resolution stream
                 baby-cam:
-                  - rtspx://192.168.1.2:7441/REDACTED_STREAM_TOKEN
+                  - rtspx://192.168.1.2:7441/REDACTED_STREAM_TOKEN # High resolution stream
+                baby-cam-low:
+                  - rtspx://192.168.1.2:7441/REDACTED_STREAM_TOKEN # Low resolution stream
 
             cameras:
               back-yard:
-                rtmp:
-                  enabled: false
                 ffmpeg:
+                  output_args:
+                    # rtmp: preset-rtmp-ubiquiti # Only use when streaming directly from Ubiquiti DVR
+                    # record: preset-record-ubiquiti # Only use when streaming directly from Ubiquiti DVR
+                    record: preset-record-generic-audio-copy
                   inputs:
-                    # Use the low resolution stream for motion/object detection
-                    - path: rtsps://192.168.1.2:7441/REDACTED_STREAM_TOKEN?enableSrtp
+                    # Use the low resolution stream for object/audio detection
+                    # - path: rtsps://192.168.1.2:7441/REDACTED_STREAM_TOKEN?enableSrtp # Use to stream directly from Ubiquiti DVR if Frigate fails
+                    - path: rtsp://127.0.0.1:8554/back-yard-low
                       roles:
                         - detect
                         - audio
                     # Use the high resolution stream for recordings
-                    - path: rtsps://192.168.1.2:7441/REDACTED_STREAM_TOKEN?enableSrtp
+                    - path: rtsps://192.168.1.2:7441/REDACTED_STREAM_TOKEN?enableSrtp # Use to stream directly from Ubiquiti DVR if Frigate fails
+                    - path: rtsp://127.0.0.1:8554/back-yard
                       roles:
                         - record
                 # Prevent any motion detection from being triggered in sky/high areas where people are unlikely to be
@@ -165,17 +173,21 @@ spec:
                     - thunder
 
               baby-cam:
-                rtmp:
-                  enabled: false
                 ffmpeg:
+                  output_args:
+                    # rtmp: preset-rtmp-ubiquiti # Only use when streaming directly from Ubiquiti DVR
+                    # record: preset-record-ubiquiti # Only use when streaming directly from Ubiquiti DVR
+                    record: preset-record-generic-audio-copy
                   inputs:
                     # Use the low resolution stream for motion/object detection
-                    - path: rtsps://192.168.1.2:7441/REDACTED_STREAM_TOKEN?enableSrtp
+                    # - path: rtsps://192.168.1.2:7441/REDACTED_STREAM_TOKEN?enableSrtp # Use to stream directly from Ubiquiti DVR if Frigate fails
+                    - path: rtsp://127.0.0.1:8554/baby-cam-low
                       roles:
-                        - detect
                         - audio
+                        - detect
                     # Use the high resolution stream for recordings
-                    - path: rtsps://192.168.1.2:7441/REDACTED_STREAM_TOKEN?enableSrtp
+                    # - path: rtsps://192.168.1.2:7441/REDACTED_STREAM_TOKEN?enableSrtp # Use to stream directly from Ubiquiti DVR if Frigate fails
+                    - path: rtsp://127.0.0.1:8554/back-yard
                       roles:
                         - record
                 detect:
