@@ -130,7 +130,7 @@ spec:
                     retain:
                       mode: active_objects
                 audio:
-                  enabled: True
+                  enabled: true
                   listen:
                     - lawn_mower
                     - bark
@@ -146,6 +146,7 @@ spec:
                     # Use the low resolution stream for motion/object detection
                     - path: rtsps://192.168.1.2:7441/REDACTED_STREAM_TOKEN?enableSrtp
                       roles:
+                        - audio
                         - detect
                     # Use the high resolution stream for recordings
                     - path: rtsps://192.168.1.2:7441/REDACTED_STREAM_TOKEN?enableSrtp
@@ -173,7 +174,7 @@ spec:
                     objects:
                       - person
                 audio:
-                  enabled: True
+                  enabled: true
                   listen:
                     - crying
                     - fire_alarm
