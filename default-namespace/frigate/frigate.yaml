@@ -137,7 +137,7 @@ spec:
                         - audio
                         - detect
                     # Use the high resolution stream for recordings
-                    - path: rtsps://192.168.1.2:7441/REDACTED_STREAM_TOKEN?enableSrtp # Use to stream directly from Ubiquiti DVR if Frigate fails
+                    # - path: rtsps://192.168.1.2:7441/REDACTED_STREAM_TOKEN?enableSrtp # Use to stream directly from Ubiquiti DVR if Frigate fails
                     - path: rtsp://127.0.0.1:8554/back-yard
                       input_args: preset-rtsp-restream
                       roles:
