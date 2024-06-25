@@ -113,9 +113,9 @@ spec:
             go2rtc:
               streams:
                 back-yard:
-                  - rtsps://192.168.1.2:7441/N3rNGv1kj11igPFp?enableSrtp
+                  - rtspx://192.168.1.2:7441/N3rNGv1kj11igPFp
                 baby-cam:
-                  - rtsps://192.168.1.2:7441/cXLvws60WkHtU3vs?enableSrtp
+                  - rtspx://192.168.1.2:7441/cXLvws60WkHtU3vs
 
             cameras:
               back-yard:
@@ -142,7 +142,7 @@ spec:
                     - person
                   filters:
                     dog:
-                      threshold: 0.6
+                      threshold: 0.5
                 detect:
                   enabled: true
                   width: 640
