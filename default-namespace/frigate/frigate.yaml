@@ -89,19 +89,19 @@ spec:
               min_volume: 200
               filters:
                 rain:
-                  threshold: 0.5
+                  threshold: 0.4
                 bark: 
-                  threshold: 0.7
+                  threshold: 0.4
                 lawn_mower:
-                  threshold: 0.7
+                  threshold: 0.4
                 siren:
-                  threshold: 0.7
+                  threshold: 0.4
                 thunder:
-                  threshold: 0.7
+                  threshold: 0.4
                 fire_alarm:
-                  threshold: 0.7
+                  threshold: 0.4
                 glass:
-                  threshold: 0.7
+                  threshold: 0.4
 
             birdseye:
               enabled: True
