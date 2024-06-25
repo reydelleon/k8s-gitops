@@ -80,7 +80,7 @@ spec:
               enabled: true
               retain:
                 default: 30
-            
+
             objects:
               track:
                 - person
@@ -129,8 +129,8 @@ spec:
                       - person
                     retain:
                       mode: active_objects
-               audio:
-                 enabled: True
+                audio:
+                  enabled: True
                   listen:
                     - lawn_mower
                     - bark
@@ -174,13 +174,12 @@ spec:
                       - person
                 audio:
                   enabled: True
-                   listen:
-                     - crying
-                     - fire_alarm
-                     - fire
-                     - bark
-                     - car_alarm
-                     - chatter
-                     - glass
+                  listen:
+                    - crying
+                    - fire_alarm
+                    - fire
+                    - bark
+                    - car_alarm
+                    - glass
 
 
