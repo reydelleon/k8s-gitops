@@ -110,6 +110,13 @@ spec:
               quality: 8
               mode: objects
 
+            go2rtc:
+              streams:
+                back-yard:
+                  - rtsps://192.168.1.2:7441/REDACTED_STREAM_TOKEN?enableSrtp
+                baby-cam:
+                  - rtsps://192.168.1.2:7441/REDACTED_STREAM_TOKEN?enableSrtp
+
             cameras:
               back-yard:
                 rtmp:
@@ -133,6 +140,9 @@ spec:
                   track:
                     - dog
                     - person
+                  filters:
+                    dog:
+                      threshold: 0.6
                 detect:
                   enabled: true
                   width: 640
@@ -153,6 +163,7 @@ spec:
                     - rain
                     - splinter
                     - thunder
+
               baby-cam:
                 rtmp:
                   enabled: false
@@ -161,8 +172,8 @@ spec:
                     # Use the low resolution stream for motion/object detection
                     - path: rtsps://192.168.1.2:7441/REDACTED_STREAM_TOKEN?enableSrtp
                       roles:
-                        - audio
                         - detect
+                        - audio
                     # Use the high resolution stream for recordings
                     - path: rtsps://192.168.1.2:7441/REDACTED_STREAM_TOKEN?enableSrtp
                       roles:
@@ -198,5 +209,3 @@ spec:
                     - car_alarm
                     - glass
                     - rain
-
-
