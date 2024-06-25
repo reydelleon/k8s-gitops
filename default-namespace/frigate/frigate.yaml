@@ -88,13 +88,20 @@ spec:
             audio:
               min_volume: 200
               filters:
-                rain: 0.7
-                bark: 0.7
-                lawn_mower: 0.7
-                siren: 0.7
-                thunder: 0.7
-                fire_alarm: 0.7
-                glass: 0.7
+                rain:
+                  threshold: 0.7
+                bark: 
+                  threshold: 0.7
+                lawn_mower:
+                  threshold: 0.7
+                siren:
+                  threshold: 0.7
+                thunder:
+                  threshold: 0.7
+                fire_alarm:
+                  threshold: 0.7
+                glass:
+                  threshold: 0.7
 
             birdseye:
               enabled: True
