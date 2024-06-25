@@ -89,7 +89,7 @@ spec:
               min_volume: 200
               filters:
                 rain:
-                  threshold: 0.7
+                  threshold: 0.5
                 bark: 
                   threshold: 0.7
                 lawn_mower:
