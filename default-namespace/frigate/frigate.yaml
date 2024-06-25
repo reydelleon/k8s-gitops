@@ -90,18 +90,18 @@ spec:
               filters:
                 rain:
                   threshold: 0.4
-                bark: 
+                bark:
                   threshold: 0.4
                 lawn_mower:
-                  threshold: 0.4
+                  threshold: 0.5
                 siren:
-                  threshold: 0.4
+                  threshold: 0.5
                 thunder:
-                  threshold: 0.4
+                  threshold: 0.5
                 fire_alarm:
-                  threshold: 0.4
+                  threshold: 0.5
                 glass:
-                  threshold: 0.4
+                  threshold: 0.5
 
             birdseye:
               enabled: True
