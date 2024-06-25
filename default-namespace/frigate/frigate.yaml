@@ -57,7 +57,7 @@ spec:
           config.yml: |
             mqtt:
               host: mosquitto
-              topic_prefix: security/frigate
+              topic_prefix: homeassistant
 
             detectors:
               cpu1:
