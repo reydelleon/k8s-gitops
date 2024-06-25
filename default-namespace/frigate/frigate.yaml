@@ -87,6 +87,14 @@ spec:
 
             audio:
               min_volume: 200
+              filters:
+                rain: 0.7
+                bark: 0.7
+                lawn_mower: 0.7
+                siren: 0.7
+                thunder: 0.7
+                fire_alarm: 0.7
+                glass: 0.7
 
             birdseye:
               enabled: True
@@ -182,5 +190,6 @@ spec:
                     - bark
                     - car_alarm
                     - glass
+                    - rain
 
 
