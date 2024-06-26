@@ -175,6 +175,7 @@ spec:
                     - splinter
                     - thunder
                     - fire
+                    - car_alarm
                     - smoke_detector
 
               baby-cam:
