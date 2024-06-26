@@ -99,7 +99,7 @@ spec:
                   threshold: 0.5
                 thunder:
                   threshold: 0.5
-                fire_alarm:
+                smoke_detector:
                   threshold: 0.5
                 glass:
                   threshold: 0.5
@@ -175,7 +175,7 @@ spec:
                     - splinter
                     - thunder
                     - fire
-                    - fire_alarm
+                    - smoke_detector
 
               baby-cam:
                 ffmpeg:
@@ -222,7 +222,7 @@ spec:
                   enabled: true
                   listen:
                     - crying
-                    - fire_alarm
+                    - smoke_detector
                     - fire
                     - bark
                     - car_alarm
