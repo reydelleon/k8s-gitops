@@ -86,6 +86,7 @@ spec:
                 - person
 
             audio:
+              max_not_heard: 10
               min_volume: 200
               filters:
                 rain:
