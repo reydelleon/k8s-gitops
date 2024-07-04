@@ -87,7 +87,7 @@ spec:
 
             audio:
               max_not_heard: 10
-              min_volume: 200
+              min_volume: 100
               filters:
                 rain:
                   threshold: 0.5
