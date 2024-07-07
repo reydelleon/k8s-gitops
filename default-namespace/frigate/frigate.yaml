@@ -154,6 +154,8 @@ spec:
                   filters:
                     dog:
                       threshold: 0.5
+                    person:
+                      threshold: 0.7
                 detect:
                   enabled: true
                   width: 640
