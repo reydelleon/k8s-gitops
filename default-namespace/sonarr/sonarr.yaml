@@ -19,10 +19,10 @@ spec:
   values:
     image:
       repository: linuxserver/sonarr
-      tag: 4.0.0-v4
+      tag: 4.0.9
 
     ingress:
-      ingressClassName: public
+      ingressClassName: nginx
       host: sonarr.leonmachado.com
       path: /
       pathType: ImplementationSpecific
