@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: ghcr.io/blakeblackshear/frigate
-      tag: stable
+      tag: 0.15.0
 
     # probes:
     #   startup:
@@ -60,24 +60,43 @@ spec:
               topic_prefix: homeassistant
 
             detectors:
-              cpu1:
-                type: cpu
-              cpu2:
-                type: cpu
+              ov_0:
+                type: openvino
+                device: CPU
+              ov_1:
+                type: openvino
+                device: CPU
+
+            model:
+              width: 300
+              height: 300
+              input_tensor: nhwc
+              input_pixel_format: bgr
+              path: /openvino-model/ssdlite_mobilenet_v2.xml
+              labelmap_path: /openvino-model/coco_91cl_bkgr.txt
 
             # Defaults section. Some of this can be overwritten in the cameras section.
             detect:
               fps: 5
 
             record:
-              events:
+              expire_interval: 300 # Do the clean up runs every 5 minutes
+              alerts:
                 pre_capture: 5
                 post_capture: 5
                 retain:
-                  default: 5
+                  days: 14
+                  mode: active_objects
+              detections:
+                pre_capture: 5
+                post_capture: 5   
+                retain:
+                  days: 14
+                  mode: active_objects            
 
             snapshots:
               enabled: true
+              quality: 80
               retain:
                 default: 30
 
@@ -87,7 +106,7 @@ spec:
 
             audio:
               max_not_heard: 10
-              min_volume: 100
+              min_volume: 200
               filters:
                 rain:
                   threshold: 0.5
@@ -105,7 +124,7 @@ spec:
                   threshold: 0.5
 
             birdseye:
-              enabled: True
+              enabled: true
               width: 1280
               height: 720
               quality: 8
@@ -124,6 +143,7 @@ spec:
 
             cameras:
               back-yard:
+                enabled: true
                 ffmpeg:
                   output_args:
                     # rtmp: preset-rtmp-ubiquiti # Only use when streaming directly from Ubiquiti DVR
@@ -146,7 +166,7 @@ spec:
                 # Prevent any motion detection from being triggered in sky/high areas where people are unlikely to be
                 motion:
                   mask: 
-                  - 639,196,481,179,265,161,1,152,1,1,640,0
+                  - 640,148,409,144,241,102,0,119,1,1,640,0
                 objects:
                   track:
                     - dog
@@ -165,8 +185,6 @@ spec:
                   events:
                     objects:
                       - person
-                    retain:
-                      mode: active_objects
                 audio:
                   enabled: true
                   listen:
@@ -181,6 +199,7 @@ spec:
                     - smoke_detector
 
               baby-cam:
+                enabled: true
                 ffmpeg:
                   output_args:
                     # rtmp: preset-rtmp-ubiquiti # Only use when streaming directly from Ubiquiti DVR
@@ -214,8 +233,9 @@ spec:
                   events:
                     objects:
                       - person
-                    retain:
-                      mode: active_objects
+                motion:
+                  mask
+                  - 375,223,382,165,476,162,550,248,492,316,401,325
                 zones:
                   work-station:
                     coordinates: 274,223,281,303,149,307,148,220
