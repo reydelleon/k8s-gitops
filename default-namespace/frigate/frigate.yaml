@@ -182,9 +182,6 @@ spec:
                   height: 360
                 record:
                   enabled: true
-                  events:
-                    objects:
-                      - person
                 audio:
                   enabled: true
                   listen:
@@ -230,11 +227,8 @@ spec:
                   enabled: false
                 record:
                   enabled: false
-                  events:
-                    objects:
-                      - person
                 motion:
-                  mask
+                  mask:
                   - 375,223,382,165,476,162,550,248,492,316,401,325
                 zones:
                   work-station:
