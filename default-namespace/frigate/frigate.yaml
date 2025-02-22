@@ -57,7 +57,7 @@ spec:
           config.yml: |
             mqtt:
               host: mosquitto
-              topic_prefix: homeassistant
+              topic_prefix: frigate
 
             detectors:
               ov_0:
