@@ -27,6 +27,15 @@ spec:
 
     env:
       PLUS_API_KEY: REDACTED
+    
+    service:
+      main:
+        ports:
+          rtsp:
+            enabled: true
+            port: 8554
+            targetPort: 8554
+            protocol: TCP
 
     ingress:
       main:
