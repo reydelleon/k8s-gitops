@@ -36,6 +36,11 @@ spec:
             port: 8554
             targetPort: 8554
             protocol: TCP
+          go2rtc:
+            enabled: true
+            port: 1984
+            targetPort: 1984
+            protocol: TCP
 
     ingress:
       main:
@@ -175,7 +180,7 @@ spec:
                 # Prevent any motion detection from being triggered in sky/high areas where people are unlikely to be
                 motion:
                   mask: 
-                  - 640,148,409,144,241,102,0,119,1,1,640,0
+                  - 640,148,409,144,241,102,0 ,119,1,1,640,0
                 objects:
                   track:
                     - dog
