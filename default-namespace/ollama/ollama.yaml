@@ -21,9 +21,11 @@ spec:
     ollama:
       models:
         pull: 
-          - minicpm-v
+          # -  minicpm-v
+          - llama3.2
         run:
-          - minicpm-v
+          # - minicpm-v
+          - llama3.2
     hostNetwork: true
     resources:
       requests:
@@ -31,7 +33,7 @@ spec:
         cpu: 1000m
       limits:
         memory: 10Gi
-        cpu: 20000m
+        cpu: 10000m
     ingress:
       enabled: true
       ingressClassName: nginx
