@@ -17,7 +17,7 @@ spec:
       interval: 5m0s
   values:
     image:
-      tag: "0.6.0"
+      tag: 0.6.0
     ollama:
       models:
         pull: 
@@ -25,11 +25,11 @@ spec:
     hostNetwork: true
     resources:
       requests:
-        memory: 4096Mi
-        cpu: 6000m
-      limits:
-        memory: 8192Mi
+        memory: 5g
         cpu: 8000m
+      limits:
+        memory: 10g
+        cpu: 15000m
     ingress:
       enabled: true
       ingressClassName: nginx
