@@ -22,6 +22,8 @@ spec:
       models:
         pull: 
           - minicpm-v
+        run:
+          - minicpm-v
     hostNetwork: true
     resources:
       requests:
