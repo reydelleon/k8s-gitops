@@ -29,7 +29,7 @@ spec:
     hostNetwork: true
     resources:
       requests:
-        memory: 1Gi
+        memory: 5Gi
         cpu: 4000m
       limits:
         memory: 10Gi
@@ -42,8 +42,8 @@ spec:
         paths:
         - path: /
           pathType: ImplementationSpecific
-    persistentVolume:
-      enabled: true
-      storageClass: longhorn
-      size: 30Gi
+    # persistentVolume:
+    #   enabled: true
+    #   storageClass: longhorn
+    #   size: 30Gi
     
