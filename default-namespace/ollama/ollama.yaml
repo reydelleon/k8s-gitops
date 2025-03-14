@@ -29,10 +29,10 @@ spec:
     hostNetwork: true
     resources:
       requests:
-        memory: 5Gi
+        memory: 10Gi
         cpu: 4000m
       limits:
-        memory: 10Gi
+        memory: 15Gi
         cpu: 6000m
     ingress:
       enabled: true
