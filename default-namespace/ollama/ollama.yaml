@@ -21,11 +21,11 @@ spec:
     ollama:
       models:
         pull: 
-          # -  minicpm-v
-          - llama3.2
+          -  minicpm-v
+          # - llama3.2
         run:
-          # - minicpm-v
-          - llama3.2
+          - minicpm-v
+          # - llama3.2
     hostNetwork: true
     resources:
       requests:
