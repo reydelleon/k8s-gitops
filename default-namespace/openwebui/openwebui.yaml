@@ -41,11 +41,7 @@ spec:
     ingress:
       enabled: true
       ingressClassName: nginx
-      hosts:
-      - host: ai.leonmachado.com
-        paths:
-        - path: /
-          pathType: ImplementationSpecific
+      host: ai.leonmachado.com
     # persistentVolume:
     #   enabled: true
     #   storageClass: longhorn
