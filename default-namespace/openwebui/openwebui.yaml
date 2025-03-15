@@ -24,15 +24,15 @@ spec:
         models:
           pull: 
             # - minicpm-v
-            - minicpm-v:Q4_0
+            # - minicpm-v:Q4_0
             - Llava:7b
             # - llama3.2-vision
             # - llama3.2
-            - mistral-nemo
+            # - mistral-nemo
           run:
             # - minicpm-v
-            - minicpm-v:Q4_0
-            # - Llava:7b
+            # - minicpm-v:Q4_0
+            - Llava:7b
             # - llama3.2-vision
             # - llama3.2
             # - mistral-nemo
