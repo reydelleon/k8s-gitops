@@ -42,7 +42,7 @@ spec:
       enabled: true
       ingressClassName: nginx
       hosts:
-      - host: openwebui.leonmachado.com
+      - host: ai.leonmachado.com
         paths:
         - path: /
           pathType: ImplementationSpecific
