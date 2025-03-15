@@ -23,11 +23,13 @@ spec:
       ollama:
         models:
           pull: 
-            -  minicpm-v
-            # - llama3.2
-          run:
             - minicpm-v
-            # - llama3.2
+            - llama3.2
+            - mistral-nemo
+          run:
+            # - minicpm-v
+            - llama3.2
+            # - mistral-nemo
     pipelines:
       enabled: false
     hostNetwork: true
