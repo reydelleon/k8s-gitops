@@ -23,23 +23,29 @@ spec:
       ollama:
         models:
           pull: 
-            - minicpm-v
-            - llama3.2
+            # - minicpm-v
+            # - minicpm-v:Q4_0
+            # - Llava:7b
+            - llama3.2-vision
+            # - llama3.2
             - mistral-nemo
           run:
             # - minicpm-v
-            - llama3.2
+            # - minicpm-v:Q4_0
+            # - Llava:7b
+            - llama3.2-vision
+            # - llama3.2
             # - mistral-nemo
     pipelines:
       enabled: false
     hostNetwork: true
     resources:
       requests:
-        memory: 10Gi
-        cpu: 5000m
-      limits:
         memory: 15Gi
         cpu: 10000m
+      limits:
+        memory: 20Gi
+        cpu: 20000m
     ingress:
       enabled: true
       ingressClassName: nginx
