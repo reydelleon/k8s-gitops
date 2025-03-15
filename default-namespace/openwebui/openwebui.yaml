@@ -28,8 +28,8 @@ spec:
           run:
             - minicpm-v
             # - llama3.2
-        pipelines:
-          enabled: false
+    pipelines:
+      enabled: false
     hostNetwork: true
     resources:
       requests:
