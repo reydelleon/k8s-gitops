@@ -23,19 +23,15 @@ spec:
       ollama:
         models:
           pull: 
-            - hf.co/openbmb/MiniCPM-o-2_6-gguf:F16
-            # - minicpm-v
-            # - minicpm-v:Q4_0
+            # - hf.co/openbmb/MiniCPM-o-2_6-gguf:F16
+            - hf.co/openbmb/MiniCPM-o-2_6-gguf:Q8_0
             # - Llava:7b
-            # - llama3.2-vision
             # - llama3.2
-            # - mistral-nemo
+            - mistral-nemo
           run:
-            - hf.co/openbmb/MiniCPM-o-2_6-gguf:F16
-            # - minicpm-v
-            # - minicpm-v:Q4_0
+            # - hf.co/openbmb/MiniCPM-o-2_6-gguf:F16
+            - hf.co/openbmb/MiniCPM-o-2_6-gguf:Q8_0
             # - Llava:7b
-            # - llama3.2-vision
             # - llama3.2
             # - mistral-nemo
     pipelines:
