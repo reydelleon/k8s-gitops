@@ -24,13 +24,13 @@ spec:
         models:
           pull: 
             # - hf.co/openbmb/MiniCPM-o-2_6-gguf:F16
-            - hf.co/openbmb/MiniCPM-o-2_6-gguf:Q8_0
+            - ollama run hf.co/openbmb/MiniCPM-o-2_6-gguf:Q6_K
             # - Llava:7b
             # - llama3.2
             - mistral-nemo
           run:
             # - hf.co/openbmb/MiniCPM-o-2_6-gguf:F16
-            - hf.co/openbmb/MiniCPM-o-2_6-gguf:Q8_0
+            - ollama run hf.co/openbmb/MiniCPM-o-2_6-gguf:Q6_K
             # - Llava:7b
             # - llama3.2
             # - mistral-nemo
