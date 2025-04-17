@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: linuxserver/radarr
-      tag: 4.2.4
+      tag: 5.21.1
 
     ingress:
       ingressClassName: nginx

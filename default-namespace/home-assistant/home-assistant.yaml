@@ -45,7 +45,7 @@ spec:
           TZ: "America/New_York"
         image:
           repository: codercom/code-server
-          tag: 4.96.2
+          tag: 4.99.2
         workingDir: /config
         args:
           - --user-data-dir
