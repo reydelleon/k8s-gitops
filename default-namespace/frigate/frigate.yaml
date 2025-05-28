@@ -155,8 +155,13 @@ spec:
                 baby-cam-low:
                   - rtspx://192.168.1.2:7441/REDACTED_STREAM_TOKEN # Low resolution stream
                 front-door:
+                  # High resolution stream (prefer HTTP stream and use RTSP only when necessary)
+                  - "ffmpeg:https://192.168.1.42/flv?port=1935&app=bcs&stream=channel0_main.bcs&user=go2rtc&password=REDACTED#video=copy#audio=copy#audio=opus"
+                  - rtsp://go2rtc:REDACTED@192.168.1.42/h264Preview_01_main
+                front-door-low:
+                  # Low resolution stream (prefer HTTP stream and use RTSP only when necessary)
+                  - "ffmpeg:https://192.168.1.42/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user=go2rtc&password=REDACTED#video=copy#audio=copy#audio=opus"
                   - rtsp://go2rtc:REDACTED@192.168.1.42/h264Preview_01_sub
-                  - ffmpeg:front_door#audio=pcm#audio=volume
 
             cameras:
               back-yard:
@@ -271,4 +276,37 @@ spec:
                     - path: rtsp://127.0.0.1:8554/front-door
                       roles:
                         - record
+                    - path: rtsp://127.0.0.1:8554/front-door-low
+                      roles:
+                        - detect
+                detect:
+                  enabled: true
+                  width: 640
+                  height: 480
+                objects:
+                  track:
+                    - dog
+                    - person
+                    - car
+                    - motorcycle
+                    - bicycle
+                  filters:
+                    dog:
+                      threshold: 0.5
+                    person:
+                      threshold: 0.7
+                  record:
+                    enabled: true
+                  audio:
+                    enabled: true
+                    listen:
+                      - lawn_mower
+                      - bark
+                      - siren
+                      - rain
+                      - splinter
+                      - thunder
+                      - fire
+                      - car_alarm
+
 
