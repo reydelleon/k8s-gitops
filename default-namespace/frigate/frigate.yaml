@@ -156,7 +156,6 @@ spec:
                   - rtspx://192.168.1.2:7441/KAQ6jSsLmSCtnkm7 # Low resolution stream
                 front-door:
                   - rtsp://go2rtc:WKY6qhj7ktd8kfj_mjz@192.168.1.42/h264Preview_01_sub
-                  - rtsp://192.168.1.42/Preview_01_sub
                   - ffmpeg:front_door#audio=pcm#audio=volume
 
             cameras:
