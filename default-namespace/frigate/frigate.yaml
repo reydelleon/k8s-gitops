@@ -156,6 +156,7 @@ spec:
                   - rtspx://192.168.1.2:7441/REDACTED_STREAM_TOKEN # Low resolution stream
                 door-bell:
                   - "ffmpeg:http://192.168.1.42/flv?port=1935&app=bcs&stream=channel0_main.bcs&user=admin&password=ZJd@NCApNiFhrJ99#video=copy#audio=copy#audio=opus"
+                  - rtsp://192.168.1.42/Preview_01_sub
                 door-bell-low:
                   - "ffmpeg:http://192.168.1.42/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user=admin&password=ZJd@NCApNiFhrJ99"
 
