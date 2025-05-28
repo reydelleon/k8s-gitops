@@ -264,18 +264,12 @@ spec:
                     - glass
                     - rain
               
-              door-bell:
+              front-door:
                 enabled: true
                 ffmpeg:
                   inputs:
-                    # Use the low resolution stream for object/audio detection
-                    # - path: rtsp://127.0.0.1:8554/door-bell-low
-                    #   input_args: preset-stsp-restream
-                    #   roles:
-                    #     - detect
                     # Use the high resolution stream for recordings
                     - path: rtsp://127.0.0.1:8554/front-door
-                      input_args: preset-stsp-restream
                       roles:
                         - record
 
