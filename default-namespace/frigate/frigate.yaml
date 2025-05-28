@@ -297,16 +297,5 @@ spec:
                       threshold: 0.7
                 record:
                   enabled: true
-                audio:
-                  enabled: true
-                  listen:
-                    - lawn_mower
-                    - bark
-                    - siren
-                    - rain
-                    - splinter
-                    - thunder
-                    - fire
-                    - car_alarm
 
 
