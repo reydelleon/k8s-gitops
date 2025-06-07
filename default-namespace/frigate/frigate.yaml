@@ -193,6 +193,7 @@ spec:
                   track:
                     - dog
                     - person
+                    - car
                   filters:
                     dog:
                       threshold: 0.5
