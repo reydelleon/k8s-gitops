@@ -286,11 +286,11 @@ spec:
                   height: 480
                 objects:
                   track:
-                    - dog
                     - person
                     - car
                     - motorcycle
                     - bicycle
+                    - dog
                   filters:
                     dog:
                       threshold: 0.5
@@ -298,17 +298,26 @@ spec:
                       threshold: 0.7
                 record:
                   enabled: true
-                motion:
-                  mask:
-                  - 0,0.393,0.664,0.39,0.997,0.127,0.999,0.004,0.003,0.003
-                zones:
-                  front-yard:
-                    coordinates: 0,0.679,0.286,0.635,0.496,0.57,0.659,0.573,1,0.803,1,1,0.303,1,0,1
-                    objects:
+                review:
+                  alerts:
+                    labels:
                       - person
                       - car
                       - motorcycle
                       - bicycle
                       - dog
+                    required_zones:
+                      - front-yard
+                snapshots:
+                  enabled: true
+                  required_zones:
+                    - front-yard
+                motion:
+                  mask:
+                  - 0,0.393,0.664,0.39,0.997,0.127,0.999,0.004,0.003,0.003 # Sky, trees, timestamp
+                zones:
+                  front-yard:
+                    coordinates: 0,0.679,0.286,0.635,0.496,0.57,0.659,0.573,1,0.803,1,1,0.303,1,0,1
+                    loitering_time: 0 # In seconds
 
 
