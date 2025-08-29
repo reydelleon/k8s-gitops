@@ -295,7 +295,7 @@ spec:
                     dog:
                       threshold: 0.5
                     person:
-                      threshold: 0.7
+                      threshold: 0.85
                 record:
                   enabled: true
                 review:
