@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: homebridge/homebridge
-      tag: "latest"
+      tag: "1.11.0"
     env:
       TZ: "America/New_York"
     hostNetwork: true
