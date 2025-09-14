@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: homebridge/homebridge
-      tag: "2025-09-03"
+      tag: "2025-09-14"
     env:
       TZ: "America/New_York"
     hostNetwork: true
