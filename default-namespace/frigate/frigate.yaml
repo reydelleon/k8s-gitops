@@ -94,6 +94,8 @@ spec:
               provider: gemini
               api_key: "REDACTED"
               model: gemini-1.5-flash
+            face_recognition:
+              enabled: true
 
             # Defaults section. Some of this can be overwritten in the cameras section.
             detect:
