@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: linuxserver/nzbget
-      tag: version-v25.0
+      tag: version-v25.3
 
     ingress:
       ingressClassName: nginx
