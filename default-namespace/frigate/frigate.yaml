@@ -89,6 +89,12 @@ spec:
               path: /openvino-model/ssdlite_mobilenet_v2.xml
               labelmap_path: /openvino-model/coco_91cl_bkgr.txt
 
+            genai:
+              enabled: true
+              provider: gemini
+              api_key: "REDACTED"
+              model: gemini-1.5-flash
+
             # Defaults section. Some of this can be overwritten in the cameras section.
             detect:
               fps: 5
