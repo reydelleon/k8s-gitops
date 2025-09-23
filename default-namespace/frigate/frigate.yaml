@@ -89,6 +89,10 @@ spec:
               path: /openvino-model/ssdlite_mobilenet_v2.xml
               labelmap_path: /openvino-model/coco_91cl_bkgr.txt
 
+            semantic_search:
+              enabled: false
+              reindex: false
+
             genai:
               enabled: true
               provider: gemini
@@ -96,6 +100,9 @@ spec:
               model: gemini-1.5-flash
 
             face_recognition:
+              enabled: true
+
+            lpr:
               enabled: true
 
             # Defaults section. Some of this can be overwritten in the cameras section.
@@ -277,6 +284,10 @@ spec:
                     - car_alarm
                     - glass
                     - rain
+                genai:
+                  enabled: false
+                lpr:
+                  enabled: false
               
               front-door:
                 enabled: true
@@ -326,7 +337,7 @@ spec:
                   - 0,0.393,0.664,0.39,0.997,0.127,0.999,0.004,0.003,0.003 # Sky, trees, timestamp
                 zones:
                   front-yard:
-                    coordinates: 0,0.679,0.286,0.635,0.496,0.57,0.659,0.573,1,0.803,1,1,0.303,1,0,1
+                    coordinates: 0,0.679,0.286,0.635,0.496,0.58,0.659,0.58,1,0.803,1,1,0.5,1,0,1
                     loitering_time: 0 # In seconds
 
 
