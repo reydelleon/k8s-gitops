@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: ghcr.io/blakeblackshear/frigate
-      tag: 0.15.1
+      tag: 0.16.1
 
     # probes:
     #   startup:
@@ -94,6 +94,7 @@ spec:
               provider: gemini
               api_key: "REDACTED"
               model: gemini-1.5-flash
+
             face_recognition:
               enabled: true
 
