@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: longhorn
-      version: 1.9.2 # Pinning chart version to use it as the upgrading hook
+      version: 1.9.0 # Pinning chart version to use it as the upgrading hook
       sourceRef:
         kind: HelmRepository
         name: longhorn-charts
