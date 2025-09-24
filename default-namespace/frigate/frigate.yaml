@@ -218,7 +218,7 @@ spec:
                     - car
                   filters:
                     dog:
-                      threshold: 0.5
+                      threshold: 0.7
                     person:
                       threshold: 0.85
                 detect:
