@@ -57,8 +57,8 @@ spec:
         enabled: true
         storageClass: longhorn
         accessMode: ReadWriteOnce
-        size: 5Gi
-        mountPath: /data
+        size: 1Gi
+        mountPath: /config
       media:
         enabled: true
         storageClass: longhorn
@@ -69,7 +69,7 @@ spec:
     configmap:
       config:
         # -- Store frigate configuration as a ConfigMap
-        enabled: true
+        enabled: false
 
         # -- See [docs](https://blakeblackshear.github.io/frigate/) for more details.
         # @default -- see URL to default config
