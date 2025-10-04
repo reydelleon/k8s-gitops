@@ -1,7 +1,7 @@
 apiVersion: metallb.io/v1beta1
 kind: L2Advertisement
 metadata:
-  name: default-advertizing
+  name: default-advertising
   namespace: metallb-system
 spec:
   interfaces:
