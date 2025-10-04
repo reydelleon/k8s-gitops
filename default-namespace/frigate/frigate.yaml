@@ -21,10 +21,6 @@ spec:
       repository: ghcr.io/blakeblackshear/frigate
       tag: 0.16.1
 
-    # probes:
-    #   startup:
-    #     enabled: false
-
     env:
       PLUS_API_KEY: REDACTED
     
