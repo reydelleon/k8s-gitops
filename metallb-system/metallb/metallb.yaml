@@ -17,11 +17,5 @@ spec:
       interval: 5m0s
   values:
     speaker:
-      frr:
-        enabled: false
-      hostNetwork: true
-      securityContext:
-        capabilities:
-          add:
-            - NET_ADMIN
-            - NET_RAW
+    frr:
+      enabled: false
