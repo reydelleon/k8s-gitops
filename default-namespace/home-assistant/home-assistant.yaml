@@ -35,16 +35,16 @@ spec:
         annotations:
               metallb.universe.tf/address-pool: default-pool
               metallb.universe.tf/loadBalancerIPs: 192.168.1.201
-      codeserver:
-        enabled: true
-        type: LoadBalancer
-        ports:
-          http:
-            port: 80
-            targetPort: 12321
-        annotations:
-              metallb.universe.tf/address-pool: default-pool
-              metallb.universe.tf/loadBalancerIPs: 192.168.1.202
+      # codeserver:
+      #   enabled: true
+      #   type: LoadBalancer
+      #   ports:
+      #     http:
+      #       port: 80
+      #       targetPort: 12321
+      #   annotations:
+      #         metallb.universe.tf/address-pool: default-pool
+      #         metallb.universe.tf/loadBalancerIPs: 192.168.1.202
     ingress:
       main:
         enabled: false
@@ -75,12 +75,12 @@ spec:
           - "none"
         ingress:
           enabled: false
-          # ingressClassName: nginx
-          # hosts:
-          # - host: home-assistant-config.leonmachado.com
-          #   paths:
-          #   - path: /
-          #     pathType: ImplementationSpecific
+          ingressClassName: nginx
+          hosts:
+          - host: home-assistant-config.leonmachado.com
+            paths:
+            - path: /
+              pathType: ImplementationSpecific
         volumeMounts:
         - name: config
           mountPath: /config
