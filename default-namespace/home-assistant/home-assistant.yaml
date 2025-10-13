@@ -19,20 +19,41 @@ spec:
   values:
     image:
       repository: homeassistant/home-assistant
-      tag: "2025.9"
+      tag: "2025.10"
     env:
       TZ: "America/New_York"
     hostNetwork: true
     dnsPolicy: ClusterFirstWithHostNet
-    ingress:
+    service:
       main:
         enabled: true
-        ingressClassName: nginx
-        hosts:
-        - host: home-assistant.leonmachado.com
-          paths:
-          - path: /
-            pathType: ImplementationSpecific
+        type: LoadBalancer
+        ports:
+          http:
+            port: 80
+            targetPort: 8123
+        annotations:
+              metallb.universe.tf/address-pool: default-pool
+              metallb.universe.tf/loadBalancerIPs: 192.168.1.201
+      codeserver:
+        enabled: true
+        type: LoadBalancer
+        ports:
+          http:
+            port: 80
+            targetPort: 12321
+        annotations:
+              metallb.universe.tf/address-pool: default-pool
+              metallb.universe.tf/loadBalancerIPs: 192.168.1.202
+    ingress:
+      main:
+        enabled: false
+        # ingressClassName: nginx
+        # hosts:
+        # - host: home-assistant.leonmachado.com
+        #   paths:
+        #   - path: /
+        #     pathType: ImplementationSpecific
     persistence:
       config:
         enabled: true
@@ -53,13 +74,13 @@ spec:
           - --auth
           - "none"
         ingress:
-          enabled: true
-          ingressClassName: nginx
-          hosts:
-          - host: home-assistant-config.leonmachado.com
-            paths:
-            - path: /
-              pathType: ImplementationSpecific
+          enabled: false
+          # ingressClassName: nginx
+          # hosts:
+          # - host: home-assistant-config.leonmachado.com
+          #   paths:
+          #   - path: /
+          #     pathType: ImplementationSpecific
         volumeMounts:
         - name: config
           mountPath: /config

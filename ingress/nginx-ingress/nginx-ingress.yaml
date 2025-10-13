@@ -19,3 +19,5 @@ spec:
     controller:
       service:
         annotations: {}   # remove deprecated metallb.universe.tf/ip-allocated-from-pool
+      metrics:
+        enabled: true
