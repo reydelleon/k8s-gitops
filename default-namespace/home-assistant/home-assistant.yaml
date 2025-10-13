@@ -24,17 +24,17 @@ spec:
       TZ: "America/New_York"
     hostNetwork: true
     dnsPolicy: ClusterFirstWithHostNet
-    service:
-      main:
-        enabled: true
-        type: LoadBalancer
-        ports:
-          http:
-            port: 80
-            targetPort: 8123
-        annotations:
-              metallb.universe.tf/address-pool: default-pool
-              metallb.universe.tf/loadBalancerIPs: 192.168.1.201
+    # service:
+    #   main:
+    #     enabled: true
+    #     type: LoadBalancer
+    #     ports:
+    #       http:
+    #         port: 80
+    #         targetPort: 8123
+    #     annotations:
+    #           metallb.universe.tf/address-pool: default-pool
+    #           metallb.universe.tf/loadBalancerIPs: 192.168.1.201
       # codeserver:
       #   enabled: true
       #   type: LoadBalancer
@@ -48,12 +48,12 @@ spec:
     ingress:
       main:
         enabled: false
-        # ingressClassName: nginx
-        # hosts:
-        # - host: home-assistant.leonmachado.com
-        #   paths:
-        #   - path: /
-        #     pathType: ImplementationSpecific
+        ingressClassName: nginx
+        hosts:
+        - host: home-assistant.leonmachado.com
+          paths:
+          - path: /
+            pathType: ImplementationSpecific
     persistence:
       config:
         enabled: true
