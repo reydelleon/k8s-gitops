@@ -17,5 +17,14 @@ spec:
       interval: 5m0s
   values:
     speaker:
-    frr:
-      enabled: false
+      frr:
+        enabled: false
+      securityContext:
+        allowPrivilegeEscalation: true
+        capabilities:
+          add:
+            - NET_ADMIN
+            - NET_RAW
+          drop:
+            - ALL
+        privileged: true
