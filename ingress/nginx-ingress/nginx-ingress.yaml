@@ -18,6 +18,7 @@ spec:
   values:
     controller:
       service:
+        externalTrafficPolicy: Cluster
         annotations: {}   # remove deprecated metallb.universe.tf/ip-allocated-from-pool
       metrics:
         enabled: true
