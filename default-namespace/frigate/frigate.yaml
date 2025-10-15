@@ -30,6 +30,11 @@ spec:
         type: LoadBalancer
         loadBalancerIp:  192.168.1.203
         ports:
+          ui:
+            enabled: true
+            port: 80
+            targetPort: 5000
+            protocol: TCP
           rtsp:
             enabled: true
             port: 8554
