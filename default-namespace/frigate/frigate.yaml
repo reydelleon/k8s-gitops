@@ -26,6 +26,9 @@ spec:
     
     service:
       main:
+        enabled: true
+        type: LoadBalancer
+        loadBalancerIp:  192.168.1.203
         ports:
           rtsp:
             enabled: true
@@ -38,15 +41,15 @@ spec:
             targetPort: 1984
             protocol: TCP
 
-    ingress:
-      main:
-        enabled: true
-        ingressClassName: nginx
-        hosts:
-        - host: frigate.leonmachado.com
-          paths:
-          - path: /
-            pathType: ImplementationSpecific
+    # ingress:
+    #   main:
+    #     enabled: true
+    #     ingressClassName: nginx
+    #     hosts:
+    #     - host: frigate.leonmachado.com
+    #       paths:
+    #       - path: /
+    #         pathType: ImplementationSpecific
 
     persistence:
       data:
