@@ -24,7 +24,8 @@ spec:
       main:
         enabled: true
         type: LoadBalancer
-        loadBalancerIp: 192.168.1.203
+        annotations:
+          metallb.universe.tf/loadBalancerIPs: 192.168.1.203
         ports:
           mqtt:
             enabled: true
