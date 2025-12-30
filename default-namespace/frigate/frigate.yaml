@@ -282,7 +282,7 @@ spec:
                   - 0.468,0.427,0.468,0.517,0.687,0.51,0.656,0.427
                 zones:
                   work-station:
-                    coordinates: 274,223,281,303,149,307,148,220
+                    coordinates: 274,223,281,303,145,307,145,220
                     objects:
                       - person
                 audio:
