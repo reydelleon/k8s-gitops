@@ -201,14 +201,14 @@ spec:
                     record: preset-record-generic-audio-copy
                   inputs:
                     # Use the low resolution stream for object/audio detection
-                    # - path: rtsps://192.168.1.2:7441/<STREAM_TOKEN>?enableSrtp # Use to stream directly from Ubiquiti DVR if Frigate fails
+                    # - path: rtsps://192.168.1.2:7441/{FRIGATE_BACKYARD_LOW_STREAM_TOKEN}?enableSrtp # Use to stream directly from Ubiquiti DVR if Frigate fails
                     - path: rtsp://127.0.0.1:8554/back-yard-low
                       input_args: preset-rtsp-restream
                       roles:
                         - audio
                         - detect
                     # Use the high resolution stream for recordings
-                    # - path: rtsps://192.168.1.2:7441/<STREAM_TOKEN>?enableSrtp # Use to stream directly from Ubiquiti DVR if Frigate fails
+                    # - path: rtsps://192.168.1.2:7441/{FRIGATE_BACKYARD_STREAM_TOKEN}?enableSrtp # Use to stream directly from Ubiquiti DVR if Frigate fails
                     - path: rtsp://127.0.0.1:8554/back-yard
                       input_args: preset-rtsp-restream
                       roles:
@@ -255,14 +255,14 @@ spec:
                     record: preset-record-generic-audio-copy
                   inputs:
                     # Use the low resolution stream for motion/object detection
-                    # - path: rtsps://192.168.1.2:7441/<STREAM_TOKEN>?enableSrtp # Use to stream directly from Ubiquiti DVR if Frigate fails
+                    # - path: rtsps://192.168.1.2:7441/{FRIGATE_BABYCAM_LOW_STREAM_TOKEN}?enableSrtp # Use to stream directly from Ubiquiti DVR if Frigate fails
                     - path: rtsp://127.0.0.1:8554/baby-cam-low
                       input_args: preset-rtsp-restream
                       roles:
                         - audio
                         - detect
                     # Use the high resolution stream for recordings
-                    # - path: rtsps://192.168.1.2:7441/<STREAM_TOKEN>?enableSrtp # Use to stream directly from Ubiquiti DVR if Frigate fails
+                    # - path: rtsps://192.168.1.2:7441/{FRIGATE_BABYCAM_STREAM_TOKEN}?enableSrtp # Use to stream directly from Ubiquiti DVR if Frigate fails
                     - path: rtsp://127.0.0.1:8554/back-yard
                       input_args: preset-rtsp-restream
                       roles:
