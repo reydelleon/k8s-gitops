@@ -175,13 +175,13 @@ spec:
             go2rtc:
               streams:
                 back-yard:
-                  - rtspx://192.168.1.2:7441/REDACTED_STREAM_TOKEN # High resolution stream
+                  - "rtspx://192.168.1.2:7441/{FRIGATE_BACKYARD_STREAM_TOKEN}"
                 back-yard-low:
-                  - rtspx://192.168.1.2:7441/REDACTED_STREAM_TOKEN # Low resolution stream
+                  - "rtspx://192.168.1.2:7441/{FRIGATE_BACKYARD_LOW_STREAM_TOKEN}"
                 baby-cam:
-                  - rtspx://192.168.1.2:7441/REDACTED_STREAM_TOKEN # High resolution stream
+                  - "rtspx://192.168.1.2:7441/{FRIGATE_BABYCAM_STREAM_TOKEN}"
                 baby-cam-low:
-                  - rtspx://192.168.1.2:7441/REDACTED_STREAM_TOKEN # Low resolution stream
+                  - "rtspx://192.168.1.2:7441/{FRIGATE_BABYCAM_LOW_STREAM_TOKEN}"
                 front-door:
                   # High resolution stream (prefer HTTP stream and use RTSP only when necessary)
                   - "ffmpeg:https://192.168.1.42/flv?port=1935&app=bcs&stream=channel0_main.bcs&user=go2rtc&password={FRIGATE_FRONT_DOOR_PASSWORD}#video=copy#audio=copy#audio=opus"
