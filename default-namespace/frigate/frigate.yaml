@@ -21,8 +21,9 @@ spec:
       repository: ghcr.io/blakeblackshear/frigate
       tag: 0.16.3
 
-    env:
-      PLUS_API_KEY: REDACTED
+    envFrom:
+      - secretRef:
+          name: frigate-secrets
     
     service:
       main:
@@ -107,7 +108,7 @@ spec:
             genai:
               enabled: true
               provider: gemini
-              api_key: "REDACTED"
+              api_key: "{FRIGATE_GEMINI_API_KEY}"
               model: gemini-1.5-flash
 
             face_recognition:
@@ -183,12 +184,12 @@ spec:
                   - rtspx://192.168.1.2:7441/REDACTED_STREAM_TOKEN # Low resolution stream
                 front-door:
                   # High resolution stream (prefer HTTP stream and use RTSP only when necessary)
-                  - "ffmpeg:https://192.168.1.42/flv?port=1935&app=bcs&stream=channel0_main.bcs&user=go2rtc&password=REDACTED#video=copy#audio=copy#audio=opus"
-                  - rtsp://go2rtc:REDACTED@192.168.1.42/h264Preview_01_main
+                  - "ffmpeg:https://192.168.1.42/flv?port=1935&app=bcs&stream=channel0_main.bcs&user=go2rtc&password={FRIGATE_FRONT_DOOR_PASSWORD}#video=copy#audio=copy#audio=opus"
+                  - rtsp://go2rtc:{FRIGATE_FRONT_DOOR_PASSWORD}@192.168.1.42/h264Preview_01_main
                 front-door-low:
                   # Low resolution stream (prefer HTTP stream and use RTSP only when necessary)
-                  - "ffmpeg:https://192.168.1.42/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user=go2rtc&password=REDACTED#video=copy#audio=copy#audio=opus"
-                  - rtsp://go2rtc:REDACTED@192.168.1.42/h264Preview_01_sub
+                  - "ffmpeg:https://192.168.1.42/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user=go2rtc&password={FRIGATE_FRONT_DOOR_PASSWORD}#video=copy#audio=copy#audio=opus"
+                  - rtsp://go2rtc:{FRIGATE_FRONT_DOOR_PASSWORD}@192.168.1.42/h264Preview_01_sub
 
             cameras:
               back-yard:
