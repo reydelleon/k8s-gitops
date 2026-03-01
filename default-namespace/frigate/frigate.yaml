@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: ghcr.io/blakeblackshear/frigate
-      tag: 0.16.3
+      tag: 0.17.0
 
     envFrom:
       - secretRef:
@@ -106,10 +106,9 @@ spec:
               reindex: false
 
             genai:
-              enabled: true
               provider: gemini
               api_key: "{FRIGATE_GEMINI_API_KEY}"
-              model: gemini-1.5-flash
+              model: gemini-2.0-flash
 
             face_recognition:
               enabled: true
@@ -145,6 +144,8 @@ spec:
             objects:
               track:
                 - person
+              genai:
+                enabled: true
 
             audio:
               max_not_heard: 10
@@ -296,8 +297,9 @@ spec:
                     - car_alarm
                     - glass
                     - rain
-                genai:
-                  enabled: false
+                objects:
+                  genai:
+                    enabled: false
                 lpr:
                   enabled: false
               
