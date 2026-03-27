@@ -29,5 +29,5 @@ spec:
 
     persistence:
       media:
-        hostPath: /var/lib/media/plex-library
+        hostPath: /var/lib/media
         size: 500Gi

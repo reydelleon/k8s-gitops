@@ -19,12 +19,3 @@ spec:
     speaker:
       frr:
         enabled: false
-      securityContext:
-        allowPrivilegeEscalation: true
-        capabilities:
-          add:
-            - NET_ADMIN
-            - NET_RAW
-          drop:
-            - ALL
-        privileged: true

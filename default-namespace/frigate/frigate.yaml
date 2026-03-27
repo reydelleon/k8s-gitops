@@ -63,7 +63,7 @@ spec:
         enabled: true
         storageClass: longhorn
         accessMode: ReadWriteOnce
-        size: 1Gi
+        size: 5Gi
         mountPath: /config
       media:
         enabled: true
@@ -353,4 +353,3 @@ spec:
                   front-yard:
                     coordinates: 0,0.679,0.286,0.635,0.478,0.582,0.665,0.582,1,0.803,1,1,0.5,1,0,1
                     loitering_time: 0 # In seconds
-
