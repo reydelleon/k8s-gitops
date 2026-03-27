@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: grafana/grafana
-      tag: "12.3.4"
+      tag: "12.4.2"
     ingress:
       enabled: true
       ingressClassName: public
