@@ -22,8 +22,8 @@ spec:
       tag: "2026.3.4"
     env:
       TZ: "America/New_York"
-    # hostNetwork: true
-    # dnsPolicy: ClusterFirstWithHostNet
+    hostNetwork: true
+    dnsPolicy: ClusterFirstWithHostNet
     service:
       main:
         enabled: true
