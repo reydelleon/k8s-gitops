@@ -1,5 +1,5 @@
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: frigate
@@ -353,5 +353,4 @@ spec:
                   front-yard:
                     coordinates: 0,0.679,0.286,0.635,0.478,0.582,0.665,0.582,1,0.803,1,1,0.5,1,0,1
                     loitering_time: 0 # In seconds
-
 
