@@ -89,6 +89,7 @@ spec:
       - Stack is primarily Java, Ruby, PHP, or Python (not .NET)
       - Salary listed below $120K
       - Vague or generic job description with no meaningful technical detail
+      - Company is an early-stage AI startup (seed, Series A/B, or described as a startup building AI products)
 
       ## Automatic disqualifiers (score 1)
 
