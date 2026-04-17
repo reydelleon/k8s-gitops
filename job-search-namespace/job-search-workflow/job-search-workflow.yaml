@@ -45,7 +45,7 @@ spec:
             location: "United States"
           - query: "Senior Software Engineer"
             location: "United States"
-        results_per_query: 25
+        max_pages: 1
       filters:
         required_title_keywords: []
         blocked_title_keywords: []
