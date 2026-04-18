@@ -29,7 +29,7 @@ spec:
       image:
         repository: ghcr.io/reydelleon/job-search-workflow
         tag: "latest"
-      schedule: "0 12,19 * * 1-5"    # 7 AM and 2 PM ET on weekdays
+      schedule: "0 11,18 * * 1-5"    # 7 AM and 2 PM EDT (UTC-4)
       persistence:
         storageClass: longhorn
         size: 1Gi
