@@ -93,7 +93,7 @@ spec:
 
       ## Automatic disqualifiers (score 1)
 
-      - Requires proficiency in Python, C++, Go, or Kotlin as the primary language
-      - Role is purely Rust, JavaScript/TypeScript, or Node.js with no .NET component
+      - Requires proficiency in Go, Java, Kotlin, Ruby, PHP, Python, C++, or Rust as a significant part of the role (not just mentioned as a nice-to-have)
+      - Role is purely JavaScript/TypeScript or Node.js with no .NET component
       - Requires onsite presence (not remote or hybrid)
       - Requires relocation to a specific city outside Louisville KY
