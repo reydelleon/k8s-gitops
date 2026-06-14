@@ -35,14 +35,29 @@ spec:
     service:
       main:
         controller: main
-        type: LoadBalancer
-        annotations:
-          metallb.universe.tf/loadBalancerIPs: 192.168.1.204
+        type: ClusterIP
         ports:
           http:
             port: 80
             targetPort: 6052
             protocol: TCP
+
+    ingress:
+      main:
+        className: nginx
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-prod
+        hosts:
+        - host: esphome.leonmachado.com
+          paths:
+          - path: /
+            service:
+              identifier: main
+              port: 80
+        tls:
+        - secretName: esphome-tls
+          hosts:
+          - esphome.leonmachado.com
 
     persistence:
       config:
