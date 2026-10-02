@@ -8,6 +8,7 @@ spec:
   interval: 5m0s
   chart:
     spec:
+      # renovate: registryUrl=https://reydelleon.github.io/helm-charts/
       chart: nzbget
       version: '>=3.0.0 <4.0.0'
       sourceRef:
@@ -18,7 +19,7 @@ spec:
   values:
     image:
       repository: linuxserver/nzbget
-      tag: version-v26.0
+      tag: version-v26.3
 
     ingress:
       ingressClassName: nginx

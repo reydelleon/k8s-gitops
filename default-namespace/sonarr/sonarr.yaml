@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: linuxserver/sonarr
-      tag: 4.0.17
+      tag: 4.0.20
 
     ingress:
       ingressClassName: nginx
