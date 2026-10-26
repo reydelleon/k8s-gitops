@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: ghcr.io/reydelleon/apple-tv-bridge
-      tag: 3ec24a2
+      tag: 13becdc
       pullPolicy: Always
     imagePullSecrets:
       - name: ghcr-pull-secret
@@ -33,4 +33,5 @@ spec:
       size: 1Gi
     config:
       auto_discover: true
+      artwork_base_url: "http://192.168.1.204:6971"
       devices: []
