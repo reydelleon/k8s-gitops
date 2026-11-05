@@ -22,7 +22,7 @@ spec:
       tag: "12.4.2"
     ingress:
       enabled: true
-      ingressClassName: public
+      ingressClassName: nginx
       annotations:
           cert-manager.io/cluster-issuer: "letsencrypt-prod"
       path: /
