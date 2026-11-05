@@ -10,13 +10,15 @@ spec:
   chart:
     spec:
       chart: longhorn
-      version: 1.11.3
+      version: 1.12.1
       sourceRef:
         kind: HelmRepository
         name: longhorn-charts
         namespace: flux-system
       interval: 5m0s
   values:
+    networkPolicies:
+      restrictInternalTraffic: false
     ingress:
       enabled: true
       ingressClassName: nginx
