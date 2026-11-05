@@ -19,7 +19,9 @@ spec:
   values:
     image:
       repository: grafana/grafana
-      tag: "12.4.2"
+      tag: "13.3.0"
+    deploymentStrategy:
+      type: Recreate
     ingress:
       enabled: true
       ingressClassName: nginx
