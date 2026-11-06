@@ -1,0 +1,113 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frigate-local-ai
+  namespace: default
+data:
+  settings.json: |
+    {
+      "requires_restart": 1,
+      "config_data": {
+        "genai": {
+          "default": {
+            "provider": "ollama",
+            "base_url": "http://open-webui-ollama.default.svc.cluster.local:11434",
+            "api_key": null,
+            "model": "ha-vision",
+            "roles": ["descriptions", "chat"],
+            "provider_options": {
+              "keep_alive": "30m",
+              "think": false,
+              "options": {"num_ctx": 16384, "num_predict": 64}
+            }
+          }
+        },
+        "objects": {
+          "genai": {
+            "enabled": true,
+            "use_snapshot": true,
+            "prompt": "Describe the visible {label} in one short sentence, at most 25 words. Describe only clear appearance or activity. State uncertainty; do not infer identity or intent.",
+            "send_triggers": {
+              "tracked_object_end": true,
+              "after_significant_updates": null
+            }
+          }
+        }
+      }
+    }
+  configure.py: |
+    import json
+    import time
+    import urllib.error
+    import urllib.request
+
+    base = "http://frigate.default.svc.cluster.local"
+
+    def request(path, method="GET", payload=None):
+        data = json.dumps(payload).encode() if payload is not None else None
+        req = urllib.request.Request(
+            base + path, data, {"Content-Type": "application/json"}, method=method
+        )
+        with urllib.request.urlopen(req, timeout=20) as response:
+            return json.load(response)
+
+    with open("/settings/settings.json") as settings:
+        payload = json.load(settings)
+    result = request("/api/config/set", "PUT", payload)
+    if not result.get("success"):
+        raise RuntimeError("Frigate rejected the local AI configuration")
+    request("/api/restart", "POST")
+
+    deadline = time.monotonic() + 180
+    while time.monotonic() < deadline:
+        try:
+            config = request("/api/config")
+            provider = config.get("genai", {}).get("default", {})
+            objects = config.get("objects", {}).get("genai", {})
+            triggers = objects.get("send_triggers", {})
+            if (
+                provider.get("provider") == "ollama"
+                and provider.get("model") == "ha-vision"
+                and objects.get("use_snapshot") is True
+                and triggers.get("tracked_object_end") is True
+                and triggers.get("after_significant_updates") is None
+            ):
+                print("Verified local, snapshot-only, event-end descriptions")
+                break
+        except (urllib.error.URLError, TimeoutError, ValueError):
+            pass
+        time.sleep(5)
+    else:
+        raise RuntimeError("Frigate did not load the local AI configuration")
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: frigate-local-ai-v1
+  namespace: default
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 300
+  template:
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      containers:
+        - name: configure
+          image: python:3.13-alpine
+          command: ["python3", "/settings/configure.py"]
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 65534
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+          volumeMounts:
+            - name: settings
+              mountPath: /settings
+              readOnly: true
+      volumes:
+        - name: settings
+          configMap:
+            name: frigate-local-ai
