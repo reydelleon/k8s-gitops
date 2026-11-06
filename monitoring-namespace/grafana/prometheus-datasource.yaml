@@ -11,7 +11,7 @@ stringData:
   prometheus.yaml: |
     apiVersion: 1
     datasources:
-      - name: VictoriaMetrics
+      - name: Prometheus
         uid: prometheus
         type: prometheus
         access: proxy
