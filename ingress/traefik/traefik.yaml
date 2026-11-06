@@ -1,0 +1,36 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: traefik
+  namespace: ingress
+spec:
+  interval: 5m0s
+  chart:
+    spec:
+      # renovate: registryUrl=https://traefik.github.io/charts
+      chart: traefik
+      version: '42.3.0'
+      sourceRef:
+        kind: HelmRepository
+        name: traefik-charts
+        namespace: flux-system
+  install:
+    crds: Skip
+  upgrade:
+    crds: Skip
+  values:
+    ingressClass:
+      enabled: false
+    providers:
+      kubernetesCRD:
+        enabled: false
+      kubernetesIngress:
+        enabled: false
+      kubernetesIngressNGINX:
+        enabled: true
+    service:
+      annotations:
+        metallb.io/loadBalancerIPs: 192.168.1.205
+      spec:
+        externalTrafficPolicy: Cluster
