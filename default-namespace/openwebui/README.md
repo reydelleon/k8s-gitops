@@ -9,13 +9,16 @@ Open WebUI provides the testing interface at `https://ai.leonmachado.com`.
 | Model | Base | Use |
 | --- | --- | --- |
 | `ha-text` | `llama3.2:3b` | Home Assistant conversation and text prompts |
-| `ha-vision` | `moondream:1.8b` | Camera snapshots and image prompts |
+| `ha-vision` | `qwen3.5:0.8b` | Camera snapshots and image prompts |
 
 The text model uses a 4,096-token context; the vision model uses 2,048 tokens.
 Both models use eight CPU threads. Ollama allows one
 inference request at a time and keeps up to two models loaded for 30 minutes.
 The model files use a 12 GiB Longhorn volume. The aliases share their base
 model files; they do not duplicate model weights.
+
+Disable thinking for vision requests (`think: false`). Keep image descriptions
+short; use images resized to 480 pixels wide for camera automations.
 
 ## Home Assistant
 

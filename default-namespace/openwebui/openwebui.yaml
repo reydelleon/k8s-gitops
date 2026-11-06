@@ -49,7 +49,7 @@ spec:
         models:
           pull:
             - llama3.2:3b
-            - moondream:1.8b
+            - qwen3.5:0.8b
           run: []
           create:
             - name: ha-text
@@ -60,7 +60,7 @@ spec:
                 PARAMETER temperature 0.2
             - name: ha-vision
               template: |
-                FROM moondream:1.8b
+                FROM qwen3.5:0.8b
                 PARAMETER num_ctx 2048
                 PARAMETER num_thread 8
                 PARAMETER temperature 0.1
