@@ -20,6 +20,12 @@ spec:
     image:
       repository: eclipse-mosquitto
       tag: 2.1.2-alpine
+    persistence:
+      data:
+        enabled: true
+        storageClass: longhorn
+        accessMode: ReadWriteOnce
+        size: 1Gi
     service:
       main:
         enabled: true
