@@ -77,13 +77,19 @@ spec:
           - --auth
           - "none"
         ingress:
-          enabled: false
-          ingressClassName: nginx
+          enabled: true
+          ingressClassName: traefik
+          annotations:
+            cert-manager.io/cluster-issuer: letsencrypt-prod
           hosts:
           - host: home-assistant-config.leonmachado.com
             paths:
             - path: /
               pathType: ImplementationSpecific
+          tls:
+            - secretName: homeassistant-config-tls
+              hosts:
+                - home-assistant-config.leonmachado.com
         volumeMounts:
         - name: config
           mountPath: /config
