@@ -54,6 +54,15 @@ data:
 
     with open("/settings/settings.json") as settings:
         payload = json.load(settings)
+    current = request("/api/config")
+    # Frigate treats null as deletion and rejects deletion of absent keys.
+    if current.get("genai", {}).get("default", {}).get("api_key") is None:
+        payload["config_data"]["genai"]["default"].pop("api_key", None)
+    triggers = current.get("objects", {}).get("genai", {}).get("send_triggers", {})
+    if triggers.get("after_significant_updates") is None:
+        payload["config_data"]["objects"]["genai"]["send_triggers"].pop(
+            "after_significant_updates", None
+        )
     result = request("/api/config/set", "PUT", payload)
     if not result.get("success"):
         raise RuntimeError("Frigate rejected the local AI configuration")
@@ -84,7 +93,7 @@ data:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: frigate-local-ai-v1
+  name: frigate-local-ai-v2
   namespace: default
 spec:
   backoffLimit: 0
