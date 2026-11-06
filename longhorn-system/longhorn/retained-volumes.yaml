@@ -1,0 +1,56 @@
+# Adopt only the reclaim policy of these existing dynamically provisioned volumes.
+# Keep volumes outside Flux garbage collection.
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pvc-0083b03a-c395-46d1-bb36-131bc8c9118d
+  annotations:
+    kustomize.toolkit.fluxcd.io/prune: disabled
+spec:
+  persistentVolumeReclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pvc-0e58ea99-e42c-464c-8cac-f406e80e7806
+  annotations:
+    kustomize.toolkit.fluxcd.io/prune: disabled
+spec:
+  persistentVolumeReclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pvc-411d80b6-cabc-4d90-abc9-78b584303980
+  annotations:
+    kustomize.toolkit.fluxcd.io/prune: disabled
+spec:
+  persistentVolumeReclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pvc-aaeb5389-c1f3-4524-845e-daab3251a7bf
+  annotations:
+    kustomize.toolkit.fluxcd.io/prune: disabled
+spec:
+  persistentVolumeReclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pvc-df4db768-fb23-4fdf-adc1-034bc2b57751
+  annotations:
+    kustomize.toolkit.fluxcd.io/prune: disabled
+spec:
+  persistentVolumeReclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pvc-ee702158-02d8-4ff8-992e-694b27d6223e
+  annotations:
+    kustomize.toolkit.fluxcd.io/prune: disabled
+spec:
+  persistentVolumeReclaimPolicy: Retain
