@@ -22,7 +22,7 @@ spec:
       tag: 4.0.20
 
     ingress:
-      ingressClassName: nginx
+      ingressClassName: traefik
       host: sonarr.leonmachado.com
       path: /
       pathType: ImplementationSpecific

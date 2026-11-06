@@ -44,7 +44,7 @@ spec:
 
     ingress:
       main:
-        className: nginx
+        className: traefik
         annotations:
           cert-manager.io/cluster-issuer: letsencrypt-prod
         hosts:

@@ -21,7 +21,7 @@ spec:
       restrictInternalTraffic: false
     ingress:
       enabled: true
-      ingressClassName: nginx
+      ingressClassName: traefik
       host: longhorn.leonmachado.com
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod

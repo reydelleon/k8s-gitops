@@ -22,7 +22,7 @@ spec:
       tag: 6.4.4
 
     ingress:
-      ingressClassName: nginx
+      ingressClassName: traefik
       host: radarr.leonmachado.com
       path: /
       pathType: ImplementationSpecific

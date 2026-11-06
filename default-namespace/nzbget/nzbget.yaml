@@ -22,7 +22,7 @@ spec:
       tag: version-v26.3
 
     ingress:
-      ingressClassName: nginx
+      ingressClassName: traefik
       host: nzbget.leonmachado.com
       path: /
       pathType: ImplementationSpecific

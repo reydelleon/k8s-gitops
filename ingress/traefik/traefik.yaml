@@ -21,7 +21,9 @@ spec:
     crds: Skip
   values:
     ingressClass:
-      enabled: false
+      enabled: true
+      name: traefik
+      isDefaultClass: false
     providers:
       kubernetesCRD:
         enabled: false
@@ -29,8 +31,12 @@ spec:
         enabled: false
       kubernetesIngressNGINX:
         enabled: true
+        controllerClass: traefik.io/ingress-controller
+        ingressClass: traefik
+        publishService:
+          enabled: true
     service:
       annotations:
-        metallb.io/loadBalancerIPs: 192.168.1.205
+        metallb.io/loadBalancerIPs: 192.168.1.200
       spec:
         externalTrafficPolicy: Cluster

@@ -46,7 +46,7 @@ spec:
         cpu: 20000m
     ingress:
       enabled: true
-      ingressClassName: nginx
+      ingressClassName: traefik
       host: ai.leonmachado.com
     # persistentVolume:
     #   enabled: true
