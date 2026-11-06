@@ -36,6 +36,42 @@ spec:
                   - secretName: radarr-tls
                     hosts:
                       - radarr.leonmachado.com
+          - target:
+              version: v1
+              kind: PersistentVolume
+              name: radarr-config
+            patch: |
+              apiVersion: v1
+              kind: PersistentVolume
+              metadata:
+                name: radarr-config
+              spec:
+                nodeAffinity:
+                  required:
+                    nodeSelectorTerms:
+                      - matchExpressions:
+                          - key: kubernetes.io/hostname
+                            operator: In
+                            values:
+                              - homeserver
+          - target:
+              version: v1
+              kind: PersistentVolume
+              name: radarr-media
+            patch: |
+              apiVersion: v1
+              kind: PersistentVolume
+              metadata:
+                name: radarr-media
+              spec:
+                nodeAffinity:
+                  required:
+                    nodeSelectorTerms:
+                      - matchExpressions:
+                          - key: kubernetes.io/hostname
+                            operator: In
+                            values:
+                              - homeserver
   values:
     image:
       repository: linuxserver/radarr

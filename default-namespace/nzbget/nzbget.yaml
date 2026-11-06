@@ -36,6 +36,42 @@ spec:
                   - secretName: nzbget-tls
                     hosts:
                       - nzbget.leonmachado.com
+          - target:
+              version: v1
+              kind: PersistentVolume
+              name: nzbget-config
+            patch: |
+              apiVersion: v1
+              kind: PersistentVolume
+              metadata:
+                name: nzbget-config
+              spec:
+                nodeAffinity:
+                  required:
+                    nodeSelectorTerms:
+                      - matchExpressions:
+                          - key: kubernetes.io/hostname
+                            operator: In
+                            values:
+                              - homeserver
+          - target:
+              version: v1
+              kind: PersistentVolume
+              name: nzbget-downloads
+            patch: |
+              apiVersion: v1
+              kind: PersistentVolume
+              metadata:
+                name: nzbget-downloads
+              spec:
+                nodeAffinity:
+                  required:
+                    nodeSelectorTerms:
+                      - matchExpressions:
+                          - key: kubernetes.io/hostname
+                            operator: In
+                            values:
+                              - homeserver
   values:
     image:
       repository: linuxserver/nzbget

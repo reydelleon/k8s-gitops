@@ -36,6 +36,42 @@ spec:
                   - secretName: sonarr-tls
                     hosts:
                       - sonarr.leonmachado.com
+          - target:
+              version: v1
+              kind: PersistentVolume
+              name: sonarr-config
+            patch: |
+              apiVersion: v1
+              kind: PersistentVolume
+              metadata:
+                name: sonarr-config
+              spec:
+                nodeAffinity:
+                  required:
+                    nodeSelectorTerms:
+                      - matchExpressions:
+                          - key: kubernetes.io/hostname
+                            operator: In
+                            values:
+                              - homeserver
+          - target:
+              version: v1
+              kind: PersistentVolume
+              name: sonarr-media
+            patch: |
+              apiVersion: v1
+              kind: PersistentVolume
+              metadata:
+                name: sonarr-media
+              spec:
+                nodeAffinity:
+                  required:
+                    nodeSelectorTerms:
+                      - matchExpressions:
+                          - key: kubernetes.io/hostname
+                            operator: In
+                            values:
+                              - homeserver
   values:
     image:
       repository: linuxserver/sonarr
