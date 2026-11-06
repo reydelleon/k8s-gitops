@@ -73,6 +73,8 @@ spec:
                             values:
                               - homeserver
   values:
+    environment:
+      timeZone: America/New_York
     image:
       repository: linuxserver/radarr
       tag: 6.4.4

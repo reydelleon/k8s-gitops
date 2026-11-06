@@ -72,7 +72,32 @@ spec:
                             operator: In
                             values:
                               - homeserver
+          - target:
+              group: apps
+              version: v1
+              kind: Deployment
+              name: nzbget
+            patch: |
+              apiVersion: apps/v1
+              kind: Deployment
+              metadata:
+                name: nzbget
+              spec:
+                template:
+                  spec:
+                    containers:
+                      - name: nzbget
+                        livenessProbe:
+                          httpGet: null
+                          tcpSocket:
+                            port: http
+                        readinessProbe:
+                          httpGet: null
+                          tcpSocket:
+                            port: http
   values:
+    environment:
+      timeZone: America/New_York
     image:
       repository: linuxserver/nzbget
       tag: version-v26.3
