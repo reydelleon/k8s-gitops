@@ -1,0 +1,54 @@
+---
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMSingle
+metadata:
+  name: metrics
+  namespace: monitoring
+spec:
+  image:
+    tag: v1.155.0
+  retentionPeriod: 7d
+  storage:
+    storageClassName: longhorn
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 2Gi
+  extraArgs:
+    storage.minFreeDiskSpaceBytes: 256MiB
+---
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMAgent
+metadata:
+  name: metrics
+  namespace: monitoring
+spec:
+  image:
+    tag: v1.155.0
+  selectAllByDefault: true
+  scrapeInterval: 30s
+  remoteWrite:
+    - url: http://vmsingle-metrics.monitoring.svc.cluster.local:8428/api/v1/write
+---
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMAlert
+metadata:
+  name: metrics
+  namespace: monitoring
+spec:
+  image:
+    tag: v1.155.0
+  evaluationInterval: 30s
+  ruleSelector:
+    matchLabels:
+      prometheus: k8s
+      role: alert-rules
+  datasource:
+    url: http://vmsingle-metrics.monitoring.svc.cluster.local:8428
+  remoteWrite:
+    url: http://vmsingle-metrics.monitoring.svc.cluster.local:8428
+  remoteRead:
+    url: http://vmsingle-metrics.monitoring.svc.cluster.local:8428
+  notifiers:
+    - url: http://alertmanager-main.monitoring.svc.cluster.local:9093
