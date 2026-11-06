@@ -1,0 +1,778 @@
+---
+{
+  "apiVersion": "v1",
+  "kind": "ServiceAccount",
+  "metadata": {
+    "labels": {
+      "alertmanager": "main",
+      "app.kubernetes.io/component": "alert-router",
+      "app.kubernetes.io/name": "alertmanager",
+      "app.kubernetes.io/part-of": "kube-prometheus",
+      "app.kubernetes.io/version": "0.21.0"
+    },
+    "name": "alertmanager-main",
+    "namespace": "monitoring",
+    "annotations": {
+      "kustomize.toolkit.fluxcd.io/prune": "disabled"
+    }
+  }
+}
+---
+{
+  "apiVersion": "v1",
+  "kind": "ServiceAccount",
+  "metadata": {
+    "name": "blackbox-exporter",
+    "namespace": "monitoring",
+    "annotations": {
+      "kustomize.toolkit.fluxcd.io/prune": "disabled"
+    }
+  }
+}
+---
+{
+  "apiVersion": "v1",
+  "kind": "ServiceAccount",
+  "metadata": {
+    "labels": {
+      "app.kubernetes.io/component": "exporter",
+      "app.kubernetes.io/name": "kube-state-metrics",
+      "app.kubernetes.io/part-of": "kube-prometheus",
+      "app.kubernetes.io/version": "2.0.0"
+    },
+    "name": "kube-state-metrics",
+    "namespace": "monitoring",
+    "annotations": {
+      "kustomize.toolkit.fluxcd.io/prune": "disabled"
+    }
+  }
+}
+---
+{
+  "apiVersion": "v1",
+  "kind": "ServiceAccount",
+  "metadata": {
+    "labels": {
+      "app.kubernetes.io/component": "exporter",
+      "app.kubernetes.io/name": "node-exporter",
+      "app.kubernetes.io/part-of": "kube-prometheus",
+      "app.kubernetes.io/version": "1.1.2"
+    },
+    "name": "node-exporter",
+    "namespace": "monitoring",
+    "annotations": {
+      "kustomize.toolkit.fluxcd.io/prune": "disabled"
+    }
+  }
+}
+---
+{
+  "apiVersion": "v1",
+  "kind": "ServiceAccount",
+  "metadata": {
+    "labels": {
+      "app.kubernetes.io/component": "metrics-adapter",
+      "app.kubernetes.io/name": "prometheus-adapter",
+      "app.kubernetes.io/part-of": "kube-prometheus",
+      "app.kubernetes.io/version": "0.8.4"
+    },
+    "name": "prometheus-adapter",
+    "namespace": "monitoring",
+    "annotations": {
+      "kustomize.toolkit.fluxcd.io/prune": "disabled"
+    }
+  }
+}
+---
+{
+  "apiVersion": "v1",
+  "kind": "ServiceAccount",
+  "metadata": {
+    "labels": {
+      "app.kubernetes.io/component": "prometheus",
+      "app.kubernetes.io/name": "prometheus",
+      "app.kubernetes.io/part-of": "kube-prometheus",
+      "app.kubernetes.io/version": "2.26.0"
+    },
+    "name": "prometheus-k8s",
+    "namespace": "monitoring",
+    "annotations": {
+      "kustomize.toolkit.fluxcd.io/prune": "disabled"
+    }
+  }
+}
+---
+{
+  "apiVersion": "v1",
+  "kind": "ServiceAccount",
+  "metadata": {
+    "labels": {
+      "app.kubernetes.io/component": "controller",
+      "app.kubernetes.io/name": "prometheus-operator",
+      "app.kubernetes.io/part-of": "kube-prometheus",
+      "app.kubernetes.io/version": "0.47.0"
+    },
+    "name": "prometheus-operator",
+    "namespace": "monitoring",
+    "annotations": {
+      "kustomize.toolkit.fluxcd.io/prune": "disabled"
+    }
+  }
+}
+---
+{
+  "apiVersion": "rbac.authorization.k8s.io/v1",
+  "kind": "Role",
+  "metadata": {
+    "labels": {
+      "app.kubernetes.io/component": "prometheus",
+      "app.kubernetes.io/name": "prometheus",
+      "app.kubernetes.io/part-of": "kube-prometheus",
+      "app.kubernetes.io/version": "2.26.0"
+    },
+    "name": "prometheus-k8s",
+    "namespace": "monitoring",
+    "annotations": {
+      "kustomize.toolkit.fluxcd.io/prune": "disabled"
+    }
+  },
+  "rules": [
+    {
+      "apiGroups": [
+        ""
+      ],
+      "resources": [
+        "services",
+        "endpoints",
+        "pods"
+      ],
+      "verbs": [
+        "get",
+        "list",
+        "watch"
+      ]
+    },
+    {
+      "apiGroups": [
+        "extensions"
+      ],
+      "resources": [
+        "ingresses"
+      ],
+      "verbs": [
+        "get",
+        "list",
+        "watch"
+      ]
+    },
+    {
+      "apiGroups": [
+        "networking.k8s.io"
+      ],
+      "resources": [
+        "ingresses"
+      ],
+      "verbs": [
+        "get",
+        "list",
+        "watch"
+      ]
+    }
+  ]
+}
+---
+{
+  "apiVersion": "rbac.authorization.k8s.io/v1",
+  "kind": "Role",
+  "metadata": {
+    "labels": {
+      "app.kubernetes.io/component": "prometheus",
+      "app.kubernetes.io/name": "prometheus",
+      "app.kubernetes.io/part-of": "kube-prometheus",
+      "app.kubernetes.io/version": "2.26.0"
+    },
+    "name": "prometheus-k8s-config",
+    "namespace": "monitoring",
+    "annotations": {
+      "kustomize.toolkit.fluxcd.io/prune": "disabled"
+    }
+  },
+  "rules": [
+    {
+      "apiGroups": [
+        ""
+      ],
+      "resources": [
+        "configmaps"
+      ],
+      "verbs": [
+        "get"
+      ]
+    }
+  ]
+}
+---
+{
+  "apiVersion": "rbac.authorization.k8s.io/v1",
+  "kind": "RoleBinding",
+  "metadata": {
+    "labels": {
+      "app.kubernetes.io/component": "prometheus",
+      "app.kubernetes.io/name": "prometheus",
+      "app.kubernetes.io/part-of": "kube-prometheus",
+      "app.kubernetes.io/version": "2.26.0"
+    },
+    "name": "prometheus-k8s",
+    "namespace": "monitoring",
+    "annotations": {
+      "kustomize.toolkit.fluxcd.io/prune": "disabled"
+    }
+  },
+  "roleRef": {
+    "apiGroup": "rbac.authorization.k8s.io",
+    "kind": "Role",
+    "name": "prometheus-k8s"
+  },
+  "subjects": [
+    {
+      "kind": "ServiceAccount",
+      "name": "prometheus-k8s",
+      "namespace": "monitoring"
+    }
+  ]
+}
+---
+{
+  "apiVersion": "rbac.authorization.k8s.io/v1",
+  "kind": "RoleBinding",
+  "metadata": {
+    "labels": {
+      "app.kubernetes.io/component": "prometheus",
+      "app.kubernetes.io/name": "prometheus",
+      "app.kubernetes.io/part-of": "kube-prometheus",
+      "app.kubernetes.io/version": "2.26.0"
+    },
+    "name": "prometheus-k8s-config",
+    "namespace": "monitoring",
+    "annotations": {
+      "kustomize.toolkit.fluxcd.io/prune": "disabled"
+    }
+  },
+  "roleRef": {
+    "apiGroup": "rbac.authorization.k8s.io",
+    "kind": "Role",
+    "name": "prometheus-k8s-config"
+  },
+  "subjects": [
+    {
+      "kind": "ServiceAccount",
+      "name": "prometheus-k8s",
+      "namespace": "monitoring"
+    }
+  ]
+}
+---
+{
+  "apiVersion": "rbac.authorization.k8s.io/v1",
+  "kind": "ClusterRole",
+  "metadata": {
+    "labels": {
+      "app.kubernetes.io/component": "exporter",
+      "app.kubernetes.io/name": "node-exporter",
+      "app.kubernetes.io/part-of": "kube-prometheus",
+      "app.kubernetes.io/version": "1.1.2"
+    },
+    "name": "node-exporter",
+    "annotations": {
+      "kustomize.toolkit.fluxcd.io/prune": "disabled"
+    }
+  },
+  "rules": [
+    {
+      "apiGroups": [
+        "authentication.k8s.io"
+      ],
+      "resources": [
+        "tokenreviews"
+      ],
+      "verbs": [
+        "create"
+      ]
+    },
+    {
+      "apiGroups": [
+        "authorization.k8s.io"
+      ],
+      "resources": [
+        "subjectaccessreviews"
+      ],
+      "verbs": [
+        "create"
+      ]
+    }
+  ]
+}
+---
+{
+  "apiVersion": "rbac.authorization.k8s.io/v1",
+  "kind": "ClusterRole",
+  "metadata": {
+    "labels": {
+      "app.kubernetes.io/component": "metrics-adapter",
+      "app.kubernetes.io/name": "prometheus-adapter",
+      "app.kubernetes.io/part-of": "kube-prometheus",
+      "app.kubernetes.io/version": "0.8.4"
+    },
+    "name": "prometheus-adapter",
+    "annotations": {
+      "kustomize.toolkit.fluxcd.io/prune": "disabled"
+    }
+  },
+  "rules": [
+    {
+      "apiGroups": [
+        ""
+      ],
+      "resources": [
+        "nodes",
+        "namespaces",
+        "pods",
+        "services"
+      ],
+      "verbs": [
+        "get",
+        "list",
+        "watch"
+      ]
+    }
+  ]
+}
+---
+{
+  "apiVersion": "rbac.authorization.k8s.io/v1",
+  "kind": "ClusterRole",
+  "metadata": {
+    "labels": {
+      "app.kubernetes.io/component": "prometheus",
+      "app.kubernetes.io/name": "prometheus",
+      "app.kubernetes.io/part-of": "kube-prometheus",
+      "app.kubernetes.io/version": "2.26.0"
+    },
+    "name": "prometheus-k8s",
+    "annotations": {
+      "kustomize.toolkit.fluxcd.io/prune": "disabled"
+    }
+  },
+  "rules": [
+    {
+      "apiGroups": [
+        ""
+      ],
+      "resources": [
+        "nodes/metrics"
+      ],
+      "verbs": [
+        "get"
+      ]
+    },
+    {
+      "nonResourceURLs": [
+        "/metrics"
+      ],
+      "verbs": [
+        "get"
+      ]
+    }
+  ]
+}
+---
+{
+  "apiVersion": "rbac.authorization.k8s.io/v1",
+  "kind": "ClusterRole",
+  "metadata": {
+    "labels": {
+      "app.kubernetes.io/component": "controller",
+      "app.kubernetes.io/name": "prometheus-operator",
+      "app.kubernetes.io/part-of": "kube-prometheus",
+      "app.kubernetes.io/version": "0.47.0"
+    },
+    "name": "prometheus-operator",
+    "annotations": {
+      "kustomize.toolkit.fluxcd.io/prune": "disabled"
+    }
+  },
+  "rules": [
+    {
+      "apiGroups": [
+        "monitoring.coreos.com"
+      ],
+      "resources": [
+        "alertmanagers",
+        "alertmanagers/finalizers",
+        "alertmanagerconfigs",
+        "prometheuses",
+        "prometheuses/finalizers",
+        "thanosrulers",
+        "thanosrulers/finalizers",
+        "servicemonitors",
+        "podmonitors",
+        "probes",
+        "prometheusrules"
+      ],
+      "verbs": [
+        "*"
+      ]
+    },
+    {
+      "apiGroups": [
+        "apps"
+      ],
+      "resources": [
+        "statefulsets"
+      ],
+      "verbs": [
+        "*"
+      ]
+    },
+    {
+      "apiGroups": [
+        ""
+      ],
+      "resources": [
+        "configmaps",
+        "secrets"
+      ],
+      "verbs": [
+        "*"
+      ]
+    },
+    {
+      "apiGroups": [
+        ""
+      ],
+      "resources": [
+        "pods"
+      ],
+      "verbs": [
+        "list",
+        "delete"
+      ]
+    },
+    {
+      "apiGroups": [
+        ""
+      ],
+      "resources": [
+        "services",
+        "services/finalizers",
+        "endpoints"
+      ],
+      "verbs": [
+        "get",
+        "create",
+        "update",
+        "delete"
+      ]
+    },
+    {
+      "apiGroups": [
+        ""
+      ],
+      "resources": [
+        "nodes"
+      ],
+      "verbs": [
+        "list",
+        "watch"
+      ]
+    },
+    {
+      "apiGroups": [
+        ""
+      ],
+      "resources": [
+        "namespaces"
+      ],
+      "verbs": [
+        "get",
+        "list",
+        "watch"
+      ]
+    },
+    {
+      "apiGroups": [
+        "networking.k8s.io"
+      ],
+      "resources": [
+        "ingresses"
+      ],
+      "verbs": [
+        "get",
+        "list",
+        "watch"
+      ]
+    },
+    {
+      "apiGroups": [
+        "authentication.k8s.io"
+      ],
+      "resources": [
+        "tokenreviews"
+      ],
+      "verbs": [
+        "create"
+      ]
+    },
+    {
+      "apiGroups": [
+        "authorization.k8s.io"
+      ],
+      "resources": [
+        "subjectaccessreviews"
+      ],
+      "verbs": [
+        "create"
+      ]
+    }
+  ]
+}
+---
+{
+  "apiVersion": "rbac.authorization.k8s.io/v1",
+  "kind": "ClusterRole",
+  "metadata": {
+    "labels": {
+      "app.kubernetes.io/component": "metrics-adapter",
+      "app.kubernetes.io/name": "prometheus-adapter",
+      "app.kubernetes.io/part-of": "kube-prometheus",
+      "app.kubernetes.io/version": "0.8.4"
+    },
+    "name": "resource-metrics-server-resources",
+    "annotations": {
+      "kustomize.toolkit.fluxcd.io/prune": "disabled"
+    }
+  },
+  "rules": [
+    {
+      "apiGroups": [
+        "metrics.k8s.io"
+      ],
+      "resources": [
+        "*"
+      ],
+      "verbs": [
+        "*"
+      ]
+    }
+  ]
+}
+---
+{
+  "apiVersion": "rbac.authorization.k8s.io/v1",
+  "kind": "ClusterRole",
+  "metadata": {
+    "labels": {
+      "app.kubernetes.io/component": "metrics-adapter",
+      "app.kubernetes.io/name": "prometheus-adapter",
+      "app.kubernetes.io/part-of": "kube-prometheus",
+      "app.kubernetes.io/version": "0.8.4",
+      "rbac.authorization.k8s.io/aggregate-to-admin": "true",
+      "rbac.authorization.k8s.io/aggregate-to-edit": "true",
+      "rbac.authorization.k8s.io/aggregate-to-view": "true"
+    },
+    "name": "system:aggregated-metrics-reader",
+    "annotations": {
+      "kustomize.toolkit.fluxcd.io/prune": "disabled"
+    }
+  },
+  "rules": [
+    {
+      "apiGroups": [
+        "metrics.k8s.io"
+      ],
+      "resources": [
+        "pods",
+        "nodes"
+      ],
+      "verbs": [
+        "get",
+        "list",
+        "watch"
+      ]
+    }
+  ]
+}
+---
+{
+  "apiVersion": "rbac.authorization.k8s.io/v1",
+  "kind": "ClusterRoleBinding",
+  "metadata": {
+    "labels": {
+      "app.kubernetes.io/component": "exporter",
+      "app.kubernetes.io/name": "kube-state-metrics",
+      "app.kubernetes.io/part-of": "kube-prometheus",
+      "app.kubernetes.io/version": "2.0.0"
+    },
+    "name": "kube-state-metrics",
+    "annotations": {
+      "kustomize.toolkit.fluxcd.io/prune": "disabled"
+    }
+  },
+  "roleRef": {
+    "apiGroup": "rbac.authorization.k8s.io",
+    "kind": "ClusterRole",
+    "name": "kube-state-metrics"
+  },
+  "subjects": [
+    {
+      "kind": "ServiceAccount",
+      "name": "kube-state-metrics",
+      "namespace": "monitoring"
+    }
+  ]
+}
+---
+{
+  "apiVersion": "rbac.authorization.k8s.io/v1",
+  "kind": "ClusterRoleBinding",
+  "metadata": {
+    "labels": {
+      "app.kubernetes.io/component": "exporter",
+      "app.kubernetes.io/name": "node-exporter",
+      "app.kubernetes.io/part-of": "kube-prometheus",
+      "app.kubernetes.io/version": "1.1.2"
+    },
+    "name": "node-exporter",
+    "annotations": {
+      "kustomize.toolkit.fluxcd.io/prune": "disabled"
+    }
+  },
+  "roleRef": {
+    "apiGroup": "rbac.authorization.k8s.io",
+    "kind": "ClusterRole",
+    "name": "node-exporter"
+  },
+  "subjects": [
+    {
+      "kind": "ServiceAccount",
+      "name": "node-exporter",
+      "namespace": "monitoring"
+    }
+  ]
+}
+---
+{
+  "apiVersion": "rbac.authorization.k8s.io/v1",
+  "kind": "ClusterRoleBinding",
+  "metadata": {
+    "labels": {
+      "app.kubernetes.io/component": "metrics-adapter",
+      "app.kubernetes.io/name": "prometheus-adapter",
+      "app.kubernetes.io/part-of": "kube-prometheus",
+      "app.kubernetes.io/version": "0.8.4"
+    },
+    "name": "prometheus-adapter",
+    "annotations": {
+      "kustomize.toolkit.fluxcd.io/prune": "disabled"
+    }
+  },
+  "roleRef": {
+    "apiGroup": "rbac.authorization.k8s.io",
+    "kind": "ClusterRole",
+    "name": "prometheus-adapter"
+  },
+  "subjects": [
+    {
+      "kind": "ServiceAccount",
+      "name": "prometheus-adapter",
+      "namespace": "monitoring"
+    }
+  ]
+}
+---
+{
+  "apiVersion": "rbac.authorization.k8s.io/v1",
+  "kind": "ClusterRoleBinding",
+  "metadata": {
+    "labels": {
+      "app.kubernetes.io/component": "prometheus",
+      "app.kubernetes.io/name": "prometheus",
+      "app.kubernetes.io/part-of": "kube-prometheus",
+      "app.kubernetes.io/version": "2.26.0"
+    },
+    "name": "prometheus-k8s",
+    "annotations": {
+      "kustomize.toolkit.fluxcd.io/prune": "disabled"
+    }
+  },
+  "roleRef": {
+    "apiGroup": "rbac.authorization.k8s.io",
+    "kind": "ClusterRole",
+    "name": "prometheus-k8s"
+  },
+  "subjects": [
+    {
+      "kind": "ServiceAccount",
+      "name": "prometheus-k8s",
+      "namespace": "monitoring"
+    }
+  ]
+}
+---
+{
+  "apiVersion": "rbac.authorization.k8s.io/v1",
+  "kind": "ClusterRoleBinding",
+  "metadata": {
+    "labels": {
+      "app.kubernetes.io/component": "controller",
+      "app.kubernetes.io/name": "prometheus-operator",
+      "app.kubernetes.io/part-of": "kube-prometheus",
+      "app.kubernetes.io/version": "0.47.0"
+    },
+    "name": "prometheus-operator",
+    "annotations": {
+      "kustomize.toolkit.fluxcd.io/prune": "disabled"
+    }
+  },
+  "roleRef": {
+    "apiGroup": "rbac.authorization.k8s.io",
+    "kind": "ClusterRole",
+    "name": "prometheus-operator"
+  },
+  "subjects": [
+    {
+      "kind": "ServiceAccount",
+      "name": "prometheus-operator",
+      "namespace": "monitoring"
+    }
+  ]
+}
+---
+{
+  "apiVersion": "rbac.authorization.k8s.io/v1",
+  "kind": "ClusterRoleBinding",
+  "metadata": {
+    "labels": {
+      "app.kubernetes.io/component": "metrics-adapter",
+      "app.kubernetes.io/name": "prometheus-adapter",
+      "app.kubernetes.io/part-of": "kube-prometheus",
+      "app.kubernetes.io/version": "0.8.4"
+    },
+    "name": "resource-metrics:system:auth-delegator",
+    "annotations": {
+      "kustomize.toolkit.fluxcd.io/prune": "disabled"
+    }
+  },
+  "roleRef": {
+    "apiGroup": "rbac.authorization.k8s.io",
+    "kind": "ClusterRole",
+    "name": "system:auth-delegator"
+  },
+  "subjects": [
+    {
+      "kind": "ServiceAccount",
+      "name": "prometheus-adapter",
+      "namespace": "monitoring"
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+---
+{
+  "apiVersion": "apiregistration.k8s.io/v1",
+  "kind": "APIService",
+  "metadata": {
+    "labels": {
+      "app.kubernetes.io/component": "metrics-adapter",
+      "app.kubernetes.io/name": "prometheus-adapter",
+      "app.kubernetes.io/part-of": "kube-prometheus",
+      "app.kubernetes.io/version": "0.8.4"
+    },
+    "name": "v1beta1.metrics.k8s.io",
+    "annotations": {
+      "kustomize.toolkit.fluxcd.io/prune": "disabled"
+    }
+  },
+  "spec": {
+    "group": "metrics.k8s.io",
+    "groupPriorityMinimum": 100,
+    "insecureSkipTLSVerify": true,
+    "service": {
+      "name": "prometheus-adapter",
+      "namespace": "monitoring",
+      "port": 443
+    },
+    "version": "v1beta1",
+    "versionPriority": 100
+  }
+}
+---
+{
+  "apiVersion": "rbac.authorization.k8s.io/v1",
+  "kind": "RoleBinding",
+  "metadata": {
+    "labels": {
+      "app.kubernetes.io/component": "prometheus",
+      "app.kubernetes.io/name": "prometheus",
+      "app.kubernetes.io/part-of": "kube-prometheus",
+      "app.kubernetes.io/version": "2.26.0"
+    },
+    "name": "prometheus-k8s",
+    "namespace": "kube-system",
+    "annotations": {
+      "kustomize.toolkit.fluxcd.io/prune": "disabled"
+    }
+  },
+  "roleRef": {
+    "apiGroup": "rbac.authorization.k8s.io",
+    "kind": "Role",
+    "name": "prometheus-k8s"
+  },
+  "subjects": [
+    {
+      "kind": "ServiceAccount",
+      "name": "prometheus-k8s",
+      "namespace": "monitoring"
+    }
+  ]
+}
+---
+{
+  "apiVersion": "rbac.authorization.k8s.io/v1",
+  "kind": "RoleBinding",
+  "metadata": {
+    "labels": {
+      "app.kubernetes.io/component": "metrics-adapter",
+      "app.kubernetes.io/name": "prometheus-adapter",
+      "app.kubernetes.io/part-of": "kube-prometheus",
+      "app.kubernetes.io/version": "0.8.4"
+    },
+    "name": "resource-metrics-auth-reader",
+    "namespace": "kube-system",
+    "annotations": {
+      "kustomize.toolkit.fluxcd.io/prune": "disabled"
+    }
+  },
+  "roleRef": {
+    "apiGroup": "rbac.authorization.k8s.io",
+    "kind": "Role",
+    "name": "extension-apiserver-authentication-reader"
+  },
+  "subjects": [
+    {
+      "kind": "ServiceAccount",
+      "name": "prometheus-adapter",
+      "namespace": "monitoring"
+    }
+  ]
+}
