@@ -11,11 +11,11 @@ stringData:
   prometheus.yaml: |
     apiVersion: 1
     datasources:
-      - name: Prometheus
+      - name: VictoriaMetrics
         uid: prometheus
         type: prometheus
         access: proxy
-        url: http://prometheus-k8s.monitoring.svc.cluster.local:9090
+        url: http://vmsingle-metrics.monitoring.svc.cluster.local:8428
         isDefault: true
         editable: false
         jsonData:
