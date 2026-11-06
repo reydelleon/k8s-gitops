@@ -48,6 +48,10 @@ spec:
       enabled: true
       class: traefik
       host: ai.leonmachado.com
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+      tls: true
+      existingSecret: openwebui-tls
     # persistentVolume:
     #   enabled: true
     #   storageClass: longhorn
