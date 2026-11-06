@@ -6,6 +6,7 @@ metadata:
   namespace: default
 spec:
   interval: 5m0s
+  timeout: 30m0s
   chart:
     spec:
       chart: open-webui
@@ -16,34 +17,67 @@ spec:
         namespace: flux-system
       interval: 5m0s
   values:
-    # image:
-      # tag: git-6f4a863
+    image:
+      tag: v0.13.0
     ollama:
       enabled: true
+      image:
+        tag: 0.40.15
+      updateStrategy:
+        type: Recreate
+      persistentVolume:
+        enabled: true
+        storageClass: longhorn
+        size: 12Gi
+      resources:
+        requests:
+          cpu: 2000m
+          memory: 4Gi
+        limits:
+          cpu: 8000m
+          memory: 16Gi
+      extraEnv:
+        - name: OLLAMA_CONTEXT_LENGTH
+          value: "4096"
+        - name: OLLAMA_NUM_PARALLEL
+          value: "1"
+        - name: OLLAMA_MAX_LOADED_MODELS
+          value: "2"
+        - name: OLLAMA_KEEP_ALIVE
+          value: 30m
       ollama:
         models:
-          pull: 
-            # - hf.co/openbmb/MiniCPM-o-2_6-gguf:F16
-            - hf.co/openbmb/MiniCPM-o-2_6-gguf:Q4_0
-            # - Llava:7b
-            # - llama3.2
-            - mistral-nemo
-          run:
-            # - hf.co/openbmb/MiniCPM-o-2_6-gguf:F16
-            - hf.co/openbmb/MiniCPM-o-2_6-gguf:Q4_0
-            # - Llava:7b
-            # - llama3.2
-            # - mistral-nemo
+          pull:
+            - llama3.2:3b
+            - qwen3-vl:2b
+            - gemma3:4b
+          run: []
+          create:
+            - name: ha-text
+              template: |
+                FROM llama3.2:3b
+                PARAMETER num_ctx 4096
+                PARAMETER num_thread 8
+                PARAMETER temperature 0.2
+            - name: ha-vision
+              template: |
+                FROM qwen3-vl:2b
+                PARAMETER num_ctx 4096
+                PARAMETER num_thread 8
+                PARAMETER temperature 0.1
     pipelines:
       enabled: false
     hostNetwork: true
     resources:
       requests:
-        memory: 15Gi
-        cpu: 10000m
+        memory: 512Mi
+        cpu: 100m
       limits:
-        memory: 20Gi
-        cpu: 20000m
+        memory: 4Gi
+        cpu: 2000m
+    extraEnvVars:
+      - name: DEFAULT_MODELS
+        value: ha-text
     ingress:
       enabled: true
       class: traefik
