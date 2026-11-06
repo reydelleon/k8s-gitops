@@ -61,7 +61,7 @@ spec:
             - name: ha-vision
               template: |
                 FROM qwen3.5:0.8b
-                PARAMETER num_ctx 2048
+                PARAMETER num_ctx 4096
                 PARAMETER num_thread 8
                 PARAMETER temperature 0.1
     pipelines:
