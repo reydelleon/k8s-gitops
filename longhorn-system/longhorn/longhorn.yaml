@@ -32,6 +32,7 @@ spec:
     csi:
       kubeletRootDir: /var/snap/microk8s/common/var/lib/kubelet # This is necessary to address an issue causing the CSI driver to fail
     persistence:
+      defaultClass: true
       defaultClassReplicaCount: 1
       reclaimPolicy: Retain
     defaultSettings:
