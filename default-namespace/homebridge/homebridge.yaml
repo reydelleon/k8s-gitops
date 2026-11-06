@@ -27,11 +27,17 @@ spec:
       main:
         enabled: true
         ingressClassName: traefik
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt-prod
         hosts:
         - host: homebridge.leonmachado.com
           paths:
           - path: /
             pathType: ImplementationSpecific
+        tls:
+          - secretName: homebridge-tls
+            hosts:
+              - homebridge.leonmachado.com
     persistence:
       config:
         enabled: true
