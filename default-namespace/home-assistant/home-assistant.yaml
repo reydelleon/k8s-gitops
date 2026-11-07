@@ -56,7 +56,7 @@ spec:
         tls:
           - secretName: homeassistant-tls
             hosts:
-              - home-assistant.leonmachado.com
+              - "*.leonmachado.com"
     persistence:
       config:
         enabled: true
