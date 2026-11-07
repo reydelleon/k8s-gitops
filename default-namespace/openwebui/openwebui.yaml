@@ -42,25 +42,24 @@ spec:
         - name: OLLAMA_NUM_PARALLEL
           value: "1"
         - name: OLLAMA_MAX_LOADED_MODELS
-          value: "2"
+          value: "1"
         - name: OLLAMA_KEEP_ALIVE
           value: 30m
       ollama:
         models:
           pull:
-            - llama3.2:3b
-            - qwen3.5:0.8b
+            - qwen3.5:9b-q4_K_M
           run: []
           create:
             - name: ha-text
               template: |
-                FROM llama3.2:3b
+                FROM qwen3.5:9b-q4_K_M
                 PARAMETER num_ctx 4096
                 PARAMETER num_thread 8
                 PARAMETER temperature 0.2
             - name: ha-vision
               template: |
-                FROM qwen3.5:0.8b
+                FROM qwen3.5:9b-q4_K_M
                 PARAMETER num_ctx 16384
                 PARAMETER num_thread 8
                 PARAMETER temperature 0.1

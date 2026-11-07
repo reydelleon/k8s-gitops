@@ -8,16 +8,27 @@ Open WebUI provides the testing interface at `https://ai.leonmachado.com`.
 
 | Model | Base | Use |
 | --- | --- | --- |
-| `ha-text` | `llama3.2:3b` | Home Assistant conversation and text prompts |
-| `ha-vision` | `qwen3.5:0.8b` | Camera snapshots and image prompts |
+| `ha-text` | `qwen3.5:9b-q4_K_M` | Home Assistant conversation and text prompts |
+| `ha-vision` | `qwen3.5:9b-q4_K_M` | Camera snapshots and image prompts |
 
 The text model uses a 4,096-token context; the vision model uses 16,384 tokens.
 Both models use eight CPU threads. Ollama allows one
-inference request at a time and keeps up to two models loaded for 30 minutes.
+inference request at a time and keeps one model loaded for 30 minutes.
 The model files use a 12 GiB Longhorn volume. The aliases share their base
 model files; they do not duplicate model weights.
 
-Disable thinking for vision requests (`think: false`). Keep image descriptions
+The [Qwen 3.5 9B Q4_K_M model](https://ollama.com/library/qwen3.5:9b-q4_K_M)
+supports text and image input and downloads approximately 6.6 GB of model files.
+Q4_K_M uses mixed 4-bit quantization for the language model weights; the vision
+projector uses BF16. Ollama has a 16 GiB RAM limit shared by text and vision
+inference. Model files are only part of the memory budget: context cache,
+image processing, and runtime buffers also consume RAM. Keep the configured
+context sizes and single-model concurrency, and verify peak memory with
+representative prompts and images before increasing either. The deployment
+uses CPU inference with up to eight CPU cores; response time depends on the
+node CPU and prompt size.
+
+Disable thinking for automation requests (`think: false`). Keep image descriptions
 short; use images resized to 480 pixels wide for camera automations.
 
 ## Home Assistant
