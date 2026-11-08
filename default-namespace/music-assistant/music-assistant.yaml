@@ -24,6 +24,37 @@ spec:
     controllers:
       main:
         strategy: Recreate
+        initContainers:
+          install-alexa-provider:
+            image:
+              repository: ghcr.io/music-assistant/server
+              tag: "2.10.9"
+            command:
+              - python
+              - -c
+              - |
+                import hashlib
+                import io
+                from pathlib import Path
+                import shutil
+                import tarfile
+                import tempfile
+                import urllib.request
+
+                revision = "bd2c41399b690ced4e0c7e6f99b3ab660b610eca"
+                expected = "23b4e2c0a8acf4560185a3e888aa59fcb6a1b7e2f70fc3e852ed233e57f884fd"
+                url = f"https://codeload.github.com/312-dev/ma-alexa-music-skill/tar.gz/{revision}"
+                with urllib.request.urlopen(url, timeout=60) as response:
+                    archive = response.read()
+                if hashlib.sha256(archive).hexdigest() != expected:
+                    raise RuntimeError("Alexa provider archive checksum mismatch")
+                with tempfile.TemporaryDirectory() as directory:
+                    with tarfile.open(fileobj=io.BytesIO(archive), mode="r:gz") as source:
+                        source.extractall(directory, filter="data")
+                    root = Path(directory) / f"ma-alexa-music-skill-{revision}"
+                    shutil.copytree(root / "ma_provider", "/provider", dirs_exist_ok=True)
+                    shutil.copytree(root / "icons", "/provider/skill-icons", dirs_exist_ok=True)
+                print(f"Installed ma_alexa from {revision}", flush=True)
         containers:
           main:
             image:
@@ -31,6 +62,8 @@ spec:
               tag: "2.10.9"
             env:
               TZ: "America/Kentucky/Louisville"
+              ICON_DIR: /app/venv/lib/python3.14/site-packages/music_assistant/providers/ma_alexa/skill-icons
+              VERIFY_REQUESTS: "on"
             resources:
               requests:
                 cpu: 100m
@@ -75,8 +108,37 @@ spec:
             port: 8097
             targetPort: 8097
             protocol: TCP
+          alexa:
+            port: 5056
+            targetPort: 5056
+            protocol: TCP
+
+    ingress:
+      alexa:
+        className: traefik
+        hosts:
+          - host: alexa-music.leonmachado.com
+            paths:
+              - path: /
+                service:
+                  identifier: main
+                  port: 5056
+        tls:
+          # Shared wildcard certificate managed by the Home Assistant ingress.
+          - secretName: homeassistant-tls
+            hosts:
+              - alexa-music.leonmachado.com
 
     persistence:
+      alexa-provider:
+        type: emptyDir
+        advancedMounts:
+          main:
+            install-alexa-provider:
+              - path: /provider
+            main:
+              - path: /app/venv/lib/python3.14/site-packages/music_assistant/providers/ma_alexa
+                readOnly: true
       data:
         type: persistentVolumeClaim
         storageClass: longhorn
