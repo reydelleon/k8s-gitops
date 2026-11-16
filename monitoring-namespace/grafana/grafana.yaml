@@ -43,6 +43,20 @@ spec:
       existingSecret: grafana-credentials
       userKey: admin-user
       passwordKey: admin-password
+    dashboardProviders:
+      home-assistant.yaml:
+        apiVersion: 1
+        providers:
+          - name: home-assistant
+            orgId: 1
+            folder: Home Assistant
+            type: file
+            disableDeletion: false
+            editable: false
+            options:
+              path: /var/lib/grafana/dashboards/home-assistant
+    dashboardsConfigMaps:
+      home-assistant: grafana-dashboard-home-assistant
     sidecar:
       skipTlsVerify: true
       datasources:

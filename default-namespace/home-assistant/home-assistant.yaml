@@ -57,7 +57,16 @@ spec:
           - secretName: homeassistant-tls
             hosts:
               - "*.leonmachado.com"
+    podAnnotations:
+      checksum/telemetry: "c519e38d578b13cbe619b37fabc62c5d8a07a6952b68deb1abad105b53519c37"
     persistence:
+      telemetry:
+        enabled: true
+        type: configMap
+        name: home-assistant-telemetry
+        mountPath: /config/packages/telemetry.yaml
+        subPath: telemetry.yaml
+        readOnly: true
       config:
         enabled: true
         storageClass: longhorn

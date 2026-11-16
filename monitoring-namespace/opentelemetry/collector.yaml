@@ -1,0 +1,119 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: otel-collector
+  namespace: monitoring
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://open-telemetry.github.io/opentelemetry-helm-charts
+      chart: opentelemetry-collector
+      version: '0.178.3'
+      sourceRef:
+        kind: HelmRepository
+        name: opentelemetry-charts
+        namespace: flux-system
+  values:
+    fullnameOverride: otel-collector
+    mode: statefulset
+    replicaCount: 1
+    image:
+      repository: otel/opentelemetry-collector-contrib
+      tag: '0.165.0'
+    command:
+      name: otelcol-contrib
+    service:
+      type: ClusterIP
+    ports:
+      otlp:
+        enabled: false
+      otlp-http:
+        enabled: false
+      jaeger-compact:
+        enabled: false
+      jaeger-thrift:
+        enabled: false
+      jaeger-grpc:
+        enabled: false
+      zipkin:
+        enabled: false
+      influxdb:
+        enabled: true
+        containerPort: 8086
+        servicePort: 8086
+        protocol: TCP
+    resources:
+      requests:
+        cpu: 25m
+        memory: 64Mi
+      limits:
+        cpu: 250m
+        memory: 256Mi
+    podSecurityContext:
+      runAsNonRoot: true
+      runAsUser: 10001
+      runAsGroup: 10001
+      fsGroup: 10001
+    securityContext:
+      allowPrivilegeEscalation: false
+      readOnlyRootFilesystem: true
+      capabilities:
+        drop: [ALL]
+    statefulset:
+      volumeClaimTemplates:
+        - metadata:
+            name: queue
+          spec:
+            accessModes: [ReadWriteOnce]
+            storageClassName: longhorn
+            resources:
+              requests:
+                storage: 1Gi
+    extraVolumeMounts:
+      - name: queue
+        mountPath: /var/lib/otelcol
+    # Replace chart defaults so no scrape receiver or batch processor is enabled.
+    alternateConfig:
+      extensions:
+        health_check:
+          endpoint: ${env:MY_POD_IP}:13133
+        file_storage:
+          directory: /var/lib/otelcol
+      receivers:
+        influxdb:
+          endpoint: 0.0.0.0:8086
+      processors:
+        memory_limiter:
+          check_interval: 1s
+          limit_mib: 192
+          spike_limit_mib: 32
+      exporters:
+        otlp_http/victoriametrics:
+          metrics_endpoint: http://vmsingle-metrics.monitoring.svc.cluster.local:8428/opentelemetry/v1/metrics
+          encoding: proto
+          compression: gzip
+          sending_queue:
+            enabled: true
+            storage: file_storage
+            sizer: requests
+            queue_size: 1000
+            num_consumers: 1
+            batch:
+              sizer: items
+              min_size: 128
+              max_size: 1024
+              flush_timeout: 5s
+          retry_on_failure:
+            enabled: true
+            initial_interval: 5s
+            max_interval: 30s
+            max_elapsed_time: 0s
+      service:
+        extensions: [health_check, file_storage]
+        pipelines:
+          metrics/homeassistant:
+            receivers: [influxdb]
+            processors: [memory_limiter]
+            exporters: [otlp_http/victoriametrics]
