@@ -15,7 +15,7 @@ data:
         "temperature"
       ],
       "schemaVersion": 39,
-      "version": 1,
+      "version": 2,
       "editable": false,
       "timezone": "browser",
       "refresh": "30s",
@@ -96,7 +96,7 @@ data:
                 "drawStyle": "line",
                 "lineInterpolation": "stepAfter",
                 "lineWidth": 2,
-                "fillOpacity": 0,
+                "fillOpacity": 20,
                 "showPoints": "auto",
                 "spanNulls": false
               }
@@ -188,13 +188,9 @@ data:
           },
           "options": {
             "legend": {
-              "displayMode": "table",
+              "displayMode": "list",
               "placement": "bottom",
-              "calcs": [
-                "lastNotNull",
-                "min",
-                "max"
-              ]
+              "calcs": []
             },
             "tooltip": {
               "mode": "multi",
@@ -217,88 +213,6 @@ data:
           ]
         },
         {
-          "id": 2,
-          "type": "table",
-          "title": "Latest readings",
-          "description": "Latest available reading per sensor, no older than 30 minutes. Two office sensors are kept separate.",
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "gridPos": {
-            "h": 7,
-            "w": 24,
-            "x": 0,
-            "y": 14
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
-              },
-              "editorMode": "code",
-              "expr": "last_over_time({__name__=\"home.temperature\",\"home.room.name\"=~\"${room:regex}\"}[30m]) * 9 / 5 + 32",
-              "legendFormat": "{{home.room.name}} \u00b7 {{home.sensor.source}}",
-              "refId": "A",
-              "range": false,
-              "instant": true,
-              "format": "table"
-            }
-          ],
-          "fieldConfig": {
-            "defaults": {},
-            "overrides": [
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "Temperature"
-                },
-                "properties": [
-                  {
-                    "id": "unit",
-                    "value": "fahrenheit"
-                  },
-                  {
-                    "id": "decimals",
-                    "value": 1
-                  }
-                ]
-              }
-            ]
-          },
-          "options": {
-            "showHeader": true
-          },
-          "transformations": [
-            {
-              "id": "organize",
-              "options": {
-                "excludeByName": {
-                  "Time": true,
-                  "__name__": true,
-                  "scope.name": true,
-                  "scope.version": true,
-                  "home.sensor.id": true,
-                  "home.environment": true
-                },
-                "indexByName": {
-                  "home.room.name": 0,
-                  "home.floor.name": 1,
-                  "home.sensor.source": 2,
-                  "Value": 3
-                },
-                "renameByName": {
-                  "home.room.name": "Room",
-                  "home.floor.name": "Floor",
-                  "home.sensor.source": "Sensor",
-                  "Value": "Temperature"
-                }
-              }
-            }
-          ]
-        },
-        {
           "id": 3,
           "type": "text",
           "title": "Reading the chart",
@@ -306,7 +220,7 @@ data:
             "h": 3,
             "w": 24,
             "x": 0,
-            "y": 21
+            "y": 14
           },
           "options": {
             "mode": "markdown",
