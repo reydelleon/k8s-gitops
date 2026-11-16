@@ -15,7 +15,7 @@ data:
         "temperature"
       ],
       "schemaVersion": 39,
-      "version": 3,
+      "version": 4,
       "editable": false,
       "timezone": "browser",
       "refresh": "30s",
@@ -204,7 +204,7 @@ data:
                 "uid": "prometheus"
               },
               "editorMode": "code",
-              "expr": "last_over_time({__name__=\"home.temperature\",\"home.room.name\"=~\"${room:regex}\"}[30m]) * 9 / 5 + 32",
+              "expr": "last_over_time({__name__=\"home.temperature\",\"home.room.name\"=~\"${room:regex}\"}[30m])",
               "legendFormat": "{{home.room.name}} \u00b7 {{home.sensor.source}}",
               "refId": "A",
               "range": true,
