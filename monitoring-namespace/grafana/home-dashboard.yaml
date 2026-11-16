@@ -15,7 +15,7 @@ data:
         "temperature"
       ],
       "schemaVersion": 39,
-      "version": 2,
+      "version": 3,
       "editable": false,
       "timezone": "browser",
       "refresh": "30s",
@@ -94,10 +94,10 @@ data:
               "decimals": 1,
               "custom": {
                 "drawStyle": "line",
-                "lineInterpolation": "stepAfter",
+                "lineInterpolation": "smooth",
                 "lineWidth": 2,
                 "fillOpacity": 20,
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": false
               }
             },
