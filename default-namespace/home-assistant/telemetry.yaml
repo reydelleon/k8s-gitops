@@ -21,9 +21,15 @@ data:
       measurement_attr: entity_id
       tags:
         source: homeassistant
+      tags_attributes:
+        - unit_of_measurement
       include:
         entities:
           - sensor.ecobee_temperature
+          - sensor.master_bedroom_echo_temperature
+          - sensor.office_temperature
+          - sensor.office_echo_temperature
+          - sensor.basement_temperature
           - sensor.pirate_weather_temperature
       ignore_attributes:
         - friendly_name
