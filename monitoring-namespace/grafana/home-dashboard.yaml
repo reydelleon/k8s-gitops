@@ -8,7 +8,7 @@ data:
   home.json: |
     {
       "uid": "home",
-      "title": "Home",
+      "title": "Home Overview",
       "description": "Outdoor and individual room temperatures.",
       "tags": [
         "home",
