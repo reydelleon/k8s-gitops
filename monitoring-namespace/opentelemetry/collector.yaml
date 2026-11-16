@@ -89,6 +89,10 @@ spec:
           check_interval: 1s
           limit_mib: 192
           spike_limit_mib: 32
+        filter/homeassistant:
+          error_mode: propagate
+          metric_conditions:
+            - metric.name != "sensor.ecobee_temperature_value" and metric.name != "sensor.pirate_weather_temperature_value"
       exporters:
         otlp_http/victoriametrics:
           metrics_endpoint: http://vmsingle-metrics.monitoring.svc.cluster.local:8428/opentelemetry/v1/metrics
@@ -115,5 +119,5 @@ spec:
         pipelines:
           metrics/homeassistant:
             receivers: [influxdb]
-            processors: [memory_limiter]
+            processors: [memory_limiter, filter/homeassistant]
             exporters: [otlp_http/victoriametrics]
