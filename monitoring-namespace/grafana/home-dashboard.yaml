@@ -15,7 +15,7 @@ data:
         "temperature"
       ],
       "schemaVersion": 39,
-      "version": 5,
+      "version": 6,
       "editable": false,
       "timezone": "browser",
       "refresh": "30s",
@@ -328,21 +328,6 @@ data:
               "instant": false
             }
           ]
-        },
-        {
-          "id": 3,
-          "type": "text",
-          "title": "Reading the charts",
-          "gridPos": {
-            "h": 3,
-            "w": 24,
-            "x": 0,
-            "y": 11
-          },
-          "options": {
-            "mode": "markdown",
-            "content": "The dashed outdoor lines are Pirate Weather. The office has separate Ecobee and Echo temperature readings. Sensors without a reading in the last 30 minutes are omitted rather than shown as zero."
-          }
         }
       ]
     }
