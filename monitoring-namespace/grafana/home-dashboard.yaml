@@ -15,7 +15,7 @@ data:
         "temperature"
       ],
       "schemaVersion": 39,
-      "version": 7,
+      "version": 8,
       "editable": false,
       "timezone": "browser",
       "refresh": "30s",
@@ -76,7 +76,7 @@ data:
         {
           "id": 1,
           "type": "timeseries",
-          "title": "Temperatures around home",
+          "title": "Temperature",
           "description": "Outdoor temperature and individual room sensors. Only readings reported within the preceding 30 minutes are shown; unavailable sensors are omitted.",
           "datasource": {
             "type": "prometheus",
@@ -215,7 +215,7 @@ data:
         {
           "id": 4,
           "type": "timeseries",
-          "title": "Humidity around home",
+          "title": "Humidity",
           "description": "Indoor and outdoor relative humidity. Only readings reported within the preceding 30 minutes are shown; unavailable sensors are omitted.",
           "datasource": {
             "type": "prometheus",
