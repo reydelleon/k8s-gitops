@@ -15,7 +15,7 @@ data:
         "temperature"
       ],
       "schemaVersion": 39,
-      "version": 4,
+      "version": 5,
       "editable": false,
       "timezone": "browser",
       "refresh": "30s",
@@ -83,8 +83,8 @@ data:
             "uid": "prometheus"
           },
           "gridPos": {
-            "h": 14,
-            "w": 24,
+            "h": 11,
+            "w": 12,
             "x": 0,
             "y": 0
           },
@@ -213,18 +213,135 @@ data:
           ]
         },
         {
+          "id": 4,
+          "type": "timeseries",
+          "title": "Humidity around home",
+          "description": "Indoor and outdoor relative humidity. Only readings reported within the preceding 30 minutes are shown; unavailable sensors are omitted.",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "gridPos": {
+            "h": 11,
+            "w": 12,
+            "x": 12,
+            "y": 0
+          },
+          "fieldConfig": {
+            "defaults": {
+              "unit": "percent",
+              "decimals": 0,
+              "custom": {
+                "drawStyle": "line",
+                "lineInterpolation": "smooth",
+                "lineWidth": 2,
+                "fillOpacity": 20,
+                "showPoints": "never",
+                "spanNulls": false
+              },
+              "min": 0,
+              "max": 100
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byRegexp",
+                  "options": "^outside \u00b7 (.*)$"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "Outside \u00b7 ${__field.labels[\"home.sensor.source\"]}"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byRegexp",
+                  "options": "^main_hallway \u00b7 (.*)$"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "Main Hallway \u00b7 ${__field.labels[\"home.sensor.source\"]}"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byRegexp",
+                  "options": "^playroom \u00b7 (.*)$"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "Playroom \u00b7 ${__field.labels[\"home.sensor.source\"]}"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byRegexp",
+                  "options": "^outside \u00b7 .*"
+                },
+                "properties": [
+                  {
+                    "id": "custom.lineStyle",
+                    "value": {
+                      "fill": "dash",
+                      "dash": [
+                        8,
+                        5
+                      ]
+                    }
+                  },
+                  {
+                    "id": "custom.lineWidth",
+                    "value": 3
+                  }
+                ]
+              }
+            ]
+          },
+          "options": {
+            "legend": {
+              "displayMode": "list",
+              "placement": "bottom",
+              "calcs": []
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "prometheus"
+              },
+              "editorMode": "code",
+              "expr": "last_over_time({__name__=\"home.humidity\",\"home.room.name\"=~\"${room:regex}\"}[30m])",
+              "legendFormat": "{{home.room.name}} \u00b7 {{home.sensor.source}}",
+              "refId": "A",
+              "range": true,
+              "instant": false
+            }
+          ]
+        },
+        {
           "id": 3,
           "type": "text",
-          "title": "Reading the chart",
+          "title": "Reading the charts",
           "gridPos": {
             "h": 3,
             "w": 24,
             "x": 0,
-            "y": 14
+            "y": 11
           },
           "options": {
             "mode": "markdown",
-            "content": "The dashed outdoor line is Pirate Weather. The office has separate Ecobee and Echo readings. Sensors without a reading in the last 30 minutes are omitted rather than shown as zero."
+            "content": "The dashed outdoor lines are Pirate Weather. The office has separate Ecobee and Echo temperature readings. Sensors without a reading in the last 30 minutes are omitted rather than shown as zero."
           }
         }
       ]

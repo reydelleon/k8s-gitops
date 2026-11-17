@@ -118,6 +118,27 @@ spec:
                 - set(metric.name, "home.temperature")
                 - set(metric.unit, "[degF]")
                 - set(metric.description, "Ambient temperature at a home location.")
+        filter/home_humidity:
+          error_mode: propagate
+          metric_conditions:
+            - not IsMatch(metric.name, "^sensor[.](ecobee_humidity|basement_humidity|pirate_weather_humidity)_value$")
+            - datapoint.attributes["unit_of_measurement"] != "%"
+        transform/home_humidity:
+          error_mode: propagate
+          metric_statements:
+            - context: datapoint
+              statements:
+                - >-
+                  merge_maps(datapoint.attributes, {"home.room.name": "main_hallway", "home.floor.name": "ground_level", "home.environment": "indoor", "home.sensor.source": "ecobee"}, "upsert") where datapoint.attributes["entity_id"] == "ecobee_humidity"
+                - >-
+                  merge_maps(datapoint.attributes, {"home.room.name": "playroom", "home.floor.name": "basement", "home.environment": "indoor", "home.sensor.source": "esphome"}, "upsert") where datapoint.attributes["entity_id"] == "basement_humidity"
+                - >-
+                  merge_maps(datapoint.attributes, {"home.room.name": "outside", "home.floor.name": "outside", "home.environment": "outdoor", "home.sensor.source": "pirate_weather"}, "upsert") where datapoint.attributes["entity_id"] == "pirate_weather_humidity"
+                - set(datapoint.attributes["home.sensor.id"], Concat(["sensor", datapoint.attributes["entity_id"]], "."))
+                - keep_keys(datapoint.attributes, ["home.room.name", "home.floor.name", "home.environment", "home.sensor.id", "home.sensor.source"])
+                - set(metric.name, "home.humidity")
+                - set(metric.unit, "%")
+                - set(metric.description, "Relative humidity at a home location.")
       exporters:
         otlp_http/victoriametrics:
           metrics_endpoint: http://vmsingle-metrics.monitoring.svc.cluster.local:8428/opentelemetry/v1/metrics
@@ -145,4 +166,8 @@ spec:
           metrics/home:
             receivers: [influxdb]
             processors: [memory_limiter, filter/home_temperature, transform/home_temperature]
+            exporters: [otlp_http/victoriametrics]
+          metrics/home_humidity:
+            receivers: [influxdb]
+            processors: [memory_limiter, filter/home_humidity, transform/home_humidity]
             exporters: [otlp_http/victoriametrics]

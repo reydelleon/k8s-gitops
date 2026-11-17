@@ -15,6 +15,13 @@ data:
             unit_of_measurement: "°F"
             availability: "{{ is_number(state_attr('weather.pirateweather', 'temperature')) }}"
             state: "{{ state_attr('weather.pirateweather', 'temperature') }}"
+          - name: Pirate Weather Humidity
+            unique_id: pirate_weather_humidity_telemetry
+            device_class: humidity
+            state_class: measurement
+            unit_of_measurement: "%"
+            availability: "{{ is_number(state_attr('weather.pirateweather', 'humidity')) }}"
+            state: "{{ state_attr('weather.pirateweather', 'humidity') }}"
 
     influxdb:
       max_retries: 3
@@ -31,6 +38,9 @@ data:
           - sensor.office_echo_temperature
           - sensor.basement_temperature
           - sensor.pirate_weather_temperature
+          - sensor.ecobee_humidity
+          - sensor.basement_humidity
+          - sensor.pirate_weather_humidity
       ignore_attributes:
         - friendly_name
         - unit_of_measurement

@@ -58,7 +58,7 @@ spec:
             hosts:
               - "*.leonmachado.com"
     podAnnotations:
-      checksum/telemetry: "ddfa787c19bfae2fc54c08e4c2d5ab4603c893665674cf2132bf64f7b6a05eaa"
+      checksum/telemetry: "c01da084ea534721cf9bdb3d2c66b0c722bb990e0c521e4d247e90ec4adcb75c"
     persistence:
       telemetry:
         enabled: true
