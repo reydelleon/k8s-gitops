@@ -1,0 +1,40 @@
+title: Security Console
+views:
+  - title: Security Console
+    path: overview
+    icon: mdi:shield-home
+    type: panel
+    cards:
+      - type: custom:security-console
+        alarm: alarm_control_panel.simplisafe
+        frigate_instance: frigate
+        cameras:
+          - name: Front Door
+            stream: front-door
+            entity: camera.front_door
+          - name: Back Yard
+            stream: back-yard
+            entity: camera.back_yard
+          - name: Back Yard Right
+            stream: back-yard-right
+            entity: camera.back_yard_right
+          - name: Baby Cam
+            stream: baby-cam
+            entity: camera.baby_cam
+        entries:
+          - name: Front Door
+            entity: binary_sensor.front_door_door
+          - name: Patio Door
+            entity: binary_sensor.patio_door_door
+          - name: Garage Back Door
+            entity: binary_sensor.garage_back_door_door
+          - name: Office Window
+            entity: binary_sensor.office_window_door
+          - name: Master Bedroom Window
+            entity: binary_sensor.master_bedroom_window_door
+          - name: Guest Bedroom Window
+            entity: binary_sensor.guest_bedroom_window_door
+          - name: Garage Door
+            entity: cover.garage_door
+          - name: Chicken Run Door
+            entity: cover.chicken_run_door
